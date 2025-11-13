@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubVerse Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0b1020;
+            --bg-gradient: linear-gradient(135deg, #0b1020 0%, #1a1f3a 100%);
+            --card-bg: rgba(15, 18, 35, 0.82);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f8fbff;
+            --text-secondary: #b7c0d9;
+            --text-muted: #9ecbff;
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --input-border: rgba(255, 255, 255, 0.08);
+            --primary-color: #0ea5ff;
+            --primary-dark: #0069e6;
+            --focus-glow: rgba(14, 165, 255, 0.15);
+            --glow-strong: rgba(14, 165, 255, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                        0 0 40px rgba(14, 165, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 255, 0.15), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(14, 165, 255, 0.08), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-field {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .form-field:focus-within {
+            background: rgba(14, 165, 255, 0.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 8px var(--focus-glow),
+                        inset 0 0 20px rgba(14, 165, 255, 0.08);
+        }
+
+        .form-field input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            width: 100%;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: inherit;
+        }
+
+        .form-field input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            min-width: 20px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .form-field:focus-within .form-icon {
+            color: var(--primary-color);
+            opacity: 1;
+        }
+
+        .form {
+            margin-top: 24px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(14, 165, 255, 0.2);
+            margin-top: 12px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(14, 165, 255, 0.4),
+                        0 0 20px rgba(14, 165, 255, 0.2);
+            filter: brightness(1.1);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(14, 165, 255, 0.3);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 600ms linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .divider {
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .divider-line {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .divider-line::before,
+        .divider-line::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--input-border);
+        }
+
+        .link-create-account {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .link-create-account::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .link-create-account:hover {
+            color: #00d4ff;
+        }
+
+        .link-create-account:hover::after {
+            width: 100%;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 12px;
+        }
+
+        .forgot-password a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #00d4ff;
+        }
+
+        .message {
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 32px 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .form-field {
+                padding: 12px 14px;
+            }
+
+            .btn-login {
+                padding: 12px 18px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <h1>Welcome Back</h1>
+                <p class="subtitle">Sign in to your account</p>
+
+                <div id="message" class="message"></div>
+
+                <form id="loginForm" class="form" method="POST" action="/login">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <div class="form-field">
+                        
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="Enter your email" 
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <label class="form-label">Password</label>
+                            <div class="forgot-password">
+                                <a href="#forgot">Forgot?</a>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                           
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter your password" 
+                                required
+                                autocomplete="current-password"
+                            >
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="loginBtn">
+                        Login
+                    </button>
+                </form>
+
+                <div class="divider">
+                    <div class="divider-line">Don't have an account?</div>
+                </div>
+
+                <p style="align-content: center; align-items: center;">
+                    <a href="/register" class="link-create-account">Create Account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+        const messageDiv = document.getElementById('message');
+
+        // Attach submit handler
+        loginForm.addEventListener('submit', handleSubmit);
+
+        function handleSubmit(e) {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Validation
+            if (!email) {
+                e.preventDefault();
+                showMessage('Please enter your email address', 'error');
+                emailInput.focus();
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                e.preventDefault();
+                showMessage('Please enter a valid KIET email address (@kiet.edu)', 'error');
+                emailInput.focus();
+                return;
+            }
+
+            if (!password) {
+                e.preventDefault();
+                showMessage('Please enter your password', 'error');
+                passwordInput.focus();
+                return;
+            }
+
+            if (password.length < 6) {
+                e.preventDefault();
+                showMessage('Password must be at least 6 characters', 'error');
+                passwordInput.focus();
+                return;
+            }
+
+            // Passed validation: allow native form submit to send POST to /login
+            // Optional: show loading state
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@kiet\.edu$/;
+            return emailRegex.test(email);
+        }
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Ripple effect on button click (unchanged)
+        loginBtn.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+            
+            this.appendChild(ripple);
+            
+            ripple.addEventListener('animationend', () => ripple.remove());
+        });
+
+        // Forgot password handler (unchanged)
+        document.querySelector('.forgot-password a').addEventListener('click', function(e) {
+            e.preventDefault();
+            showMessage('Password reset page will open here (Demo)', 'success');
+        });
+
+        // NOTE: removed custom Enter-key logic — let browser perform native submit
+    </script>
+</body>
+</html>

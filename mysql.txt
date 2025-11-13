@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS innotech;
+USE innotech;
+
+CREATE TABLE IF NOT EXISTS users (
+  UID VARCHAR(20) PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Create index on email for faster lookups
+-- CREATE INDEX idx_email ON users(email);
+
+-- Insert sample user (password: test123)
+-- INSERT INTO users (UID, name, email, password_hash) 
+-- VALUES ('K123456', 'Test User', 'test@kiet.edu', 'pbkdf2:sha256$...');

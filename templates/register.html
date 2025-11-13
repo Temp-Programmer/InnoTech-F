@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubVerse Register - Create Your Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0b1020;
+            --bg-gradient: linear-gradient(135deg, #0b1020 0%, #1a1f3a 100%);
+            --card-bg: rgba(15, 18, 35, 0.82);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f8fbff;
+            --text-secondary: #b7c0d9;
+            --text-muted: #9ecbff;
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --input-border: rgba(255, 255, 255, 0.08);
+            --primary-color: #0ea5ff;
+            --primary-dark: #0069e6;
+            --focus-glow: rgba(14, 165, 255, 0.15);
+            --success-color: #22c55e;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                        0 0 40px rgba(14, 165, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 255, 0.15), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-field {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .form-field:focus-within {
+            background: rgba(14, 165, 255, 0.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 8px var(--focus-glow),
+                        inset 0 0 20px rgba(14, 165, 255, 0.08);
+        }
+
+        .form-field.error {
+            border-color: var(--error-color);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .form-field.success {
+            border-color: var(--success-color);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .form-field input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            width: 100%;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: inherit;
+        }
+
+        .form-field input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            min-width: 20px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .form-field:focus-within .form-icon {
+            color: var(--primary-color);
+            opacity: 1;
+        }
+
+        .strength-indicator {
+            margin-top: 8px;
+            display: flex;
+            gap: 6px;
+            height: 4px;
+        }
+
+        .strength-bar {
+            flex: 1;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .strength-bar.active {
+            background: var(--error-color);
+        }
+
+        .strength-bar.active.medium {
+            background: var(--warning-color);
+        }
+
+        .strength-bar.active.strong {
+            background: var(--success-color);
+        }
+
+        .strength-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .strength-text.weak {
+            color: var(--error-color);
+        }
+
+        .strength-text.medium {
+            color: var(--warning-color);
+        }
+
+        .strength-text.strong {
+            color: var(--success-color);
+        }
+
+        .error-message {
+            font-size: 12px;
+            color: var(--error-color);
+            margin-top: 6px;
+            display: none;
+            animation: slideDown 0.2s ease-out;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form {
+            margin-top: 24px;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(14, 165, 255, 0.2);
+            margin-top: 12px;
+        }
+
+        .btn-register:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(14, 165, 255, 0.4),
+                        0 0 20px rgba(14, 165, 255, 0.2);
+            filter: brightness(1.1);
+        }
+
+        .btn-register:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(14, 165, 255, 0.3);
+        }
+
+        .btn-register:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 600ms linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .divider {
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .divider-line {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .divider-line::before,
+        .divider-line::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--input-border);
+        }
+
+        .link-login {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .link-login::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .link-login:hover {
+            color: #00d4ff;
+        }
+
+        .link-login:hover::after {
+            width: 100%;
+        }
+
+        .message {
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 32px 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .form-field {
+                padding: 12px 14px;
+            }
+
+            .btn-register {
+                padding: 12px 18px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <h1>Create Account</h1>
+                <p class="subtitle">Join KIET community today</p>
+
+                <div id="message" class="message"></div>
+
+                <form id="registerForm" class="form" method="post" action="/register">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <div class="form-field">
+                            <input type="text" id="fullname" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="error-message" id="fullname-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <div class="form-field">
+                            <input type="email" id="email" name="email" placeholder="Enter your KIET email (@kiet.edu)" required autocomplete="email">
+                        </div>
+                        <div class="error-message" id="email-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">KIET UID</label>
+                        <div class="form-field">
+                            <input type="text" id="uid" name="uid" placeholder="e.g., K123456" required>
+                        </div>
+                        <div class="error-message" id="uid-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="form-field">
+                            <input type="password" id="password" name="password" placeholder="Min 6 characters" required autocomplete="new-password">
+                        </div>
+                        <div class="strength-indicator" id="strengthIndicator">
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                        </div>
+                        <div class="strength-text" id="strengthText">Password strength</div>
+                        <div class="error-message" id="password-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <div class="form-field">
+                            <input type="password" id="confirm_password" name="password2" placeholder="Re-enter your password" required autocomplete="new-password">
+                        </div>
+                        <div class="error-message" id="confirm_password-error"></div>
+                    </div>
+
+                    <button type="submit" class="btn-register" id="registerBtn">Create Account</button>
+                </form>
+
+                <div class="divider">
+                    <div class="divider-line">Already registered?</div>
+                </div>
+
+                <a href="/login" class="link-login" id="loginLink">Sign In to Your Account</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const fullnameInput = document.getElementById('fullname');
+        const emailInput = document.getElementById('email');
+        const uidInput = document.getElementById('uid');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const registerBtn = document.getElementById('registerBtn');
+        const messageDiv = document.getElementById('message');
+        const strengthIndicator = document.getElementById('strengthIndicator');
+        const strengthText = document.getElementById('strengthText');
+
+        registerForm.addEventListener('submit', handleSubmit);
+        fullnameInput.addEventListener('blur', validateFullname);
+        emailInput.addEventListener('blur', validateEmail);
+        uidInput.addEventListener('blur', validateUid);
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('blur', validateConfirmPassword);
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            const isFullnameValid = validateFullname();
+            const isEmailValid = validateEmail();
+            const isUidValid = validateUid();
+            const isPasswordValid = validatePassword();
+            const isConfirmPasswordValid = validateConfirmPassword();
+
+            if (!isFullnameValid || !isEmailValid || !isUidValid || !isPasswordValid || !isConfirmPasswordValid) {
+                showMessage('Please fix the errors above', 'error');
+                return false;
+            }
+
+            // All validations passed - submit the form
+            console.log("DEBUG: Form validation passed, submitting...");
+            registerForm.submit();
+        }
+
+        function validateFullname() {
+            const value = fullnameInput.value.trim();
+            const errorDiv = document.getElementById('fullname-error');
+            const fieldDiv = fullnameInput.closest('.form-field');
+
+            if (!value) {
+                showError(fieldDiv, errorDiv, 'Full name is required');
+                return false;
+            }
+
+            if (value.length < 2) {
+                showError(fieldDiv, errorDiv, 'Name must be at least 2 characters');
+                return false;
+            }
+
+            if (!/^[a-zA-Z\s]+$/.test(value)) {
+                showError(fieldDiv, errorDiv, 'Name can only contain letters and spaces');
+                return false;
+            }
+
+            clearError(fieldDiv, errorDiv);
+            return true;
+        }
+
+        function validateEmail() {
+            const value = emailInput.value.trim().toLowerCase();
+            const errorDiv = document.getElementById('email-error');
+            const fieldDiv = emailInput.closest('.form-field');
+
+            if (!value) {
+                showError(fieldDiv, errorDiv, 'Email is required');
+                return false;
+            }
+
+            if (!value.endsWith('@kiet.edu')) {
+                showError(fieldDiv, errorDiv, 'Only KIET emails (@kiet.edu) are allowed');
+                return false;
+            }
+
+            const emailRegex = /^[^\s@]+@kiet\.edu$/;
+            if (!emailRegex.test(value)) {
+                showError(fieldDiv, errorDiv, 'Please enter a valid KIET email');
+                return false;
+            }
+
+            clearError(fieldDiv, errorDiv);
+            return true;
+        }
+
+        function validateUid() {
+            const value = uidInput.value.trim().toUpperCase();
+            const errorDiv = document.getElementById('uid-error');
+            const fieldDiv = uidInput.closest('.form-field');
+
+            if (!value) {
+                showError(fieldDiv, errorDiv, 'UID is required');
+                return false;
+            }
+
+            if (!/^[A-Z0-9]{6,20}$/.test(value)) {
+                showError(fieldDiv, errorDiv, 'UID must be 6-20 alphanumeric characters (e.g., K123456)');
+                return false;
+            }
+
+            clearError(fieldDiv, errorDiv);
+            return true;
+        }
+
+        function validatePassword() {
+            const value = passwordInput.value;
+            const errorDiv = document.getElementById('password-error');
+            const fieldDiv = passwordInput.closest('.form-field');
+
+            if (!value) {
+                showError(fieldDiv, errorDiv, 'Password is required');
+                updateStrengthIndicator('');
+                return false;
+            }
+
+            if (value.length < 6) {
+                showError(fieldDiv, errorDiv, 'Password must be at least 6 characters');
+                updateStrengthIndicator(value);
+                return false;
+            }
+
+            clearError(fieldDiv, errorDiv);
+            updateStrengthIndicator(value);
+            return true;
+        }
+
+        function validateConfirmPassword() {
+            const value = confirmPasswordInput.value.trim();
+            const passwordValue = passwordInput.value;
+            const errorDiv = document.getElementById('confirm_password-error');
+            const fieldDiv = confirmPasswordInput.closest('.form-field');
+
+            if (!value) {
+                showError(fieldDiv, errorDiv, 'Please confirm your password');
+                return false;
+            }
+
+            if (value !== passwordValue) {
+                showError(fieldDiv, errorDiv, 'Passwords do not match');
+                return false;
+            }
+
+            clearError(fieldDiv, errorDiv);
+            return true;
+        }
+
+        function updateStrengthIndicator(password) {
+            const bars = strengthIndicator.querySelectorAll('.strength-bar');
+            let strength = 0;
+
+            if (!password) {
+                bars.forEach(bar => bar.classList.remove('active', 'medium', 'strong'));
+                strengthText.textContent = 'Password strength';
+                strengthText.className = 'strength-text';
+                return;
+            }
+
+            if (password.length >= 6) strength++;
+            if (password.length >= 12) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[!@#$%^&*]/.test(password)) strength++;
+
+            bars.forEach((bar, index) => {
+                if (index < Math.min(strength / 2, 3)) {
+                    bar.classList.add('active');
+                    if (strength >= 4) bar.classList.add('medium');
+                    if (strength >= 5) bar.classList.add('strong');
+                } else {
+                    bar.classList.remove('active', 'medium', 'strong');
+                }
+            });
+
+            if (strength <= 2) {
+                strengthText.textContent = 'Weak password';
+                strengthText.className = 'strength-text weak';
+            } else if (strength <= 4) {
+                strengthText.textContent = 'Medium strength';
+                strengthText.className = 'strength-text medium';
+            } else {
+                strengthText.textContent = 'Strong password';
+                strengthText.className = 'strength-text strong';
+            }
+        }
+
+        function showError(fieldDiv, errorDiv, message) {
+            fieldDiv.classList.add('error');
+            fieldDiv.classList.remove('success');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+        }
+
+        function clearError(fieldDiv, errorDiv) {
+            fieldDiv.classList.remove('error');
+            fieldDiv.classList.add('success');
+            errorDiv.classList.remove('show');
+        }
+
+        function clearAllValidation() {
+            document.querySelectorAll('.form-field').forEach(field => {
+                field.classList.remove('error', 'success');
+            });
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.classList.remove('show');
+            });
+        }
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+        }
+
+        registerBtn.addEventListener('click', function(e) {
+            if (this.disabled) return;
+            
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+            
+            this.appendChild(ripple);
+            
+            ripple.addEventListener('animationend', () => ripple.remove());
+        });
+    </script>
+</body>
+</html>

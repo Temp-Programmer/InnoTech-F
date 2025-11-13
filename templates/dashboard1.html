@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIET ClubVerse Dashboard</title>
+    <style>
+        /* Design System Variables */
+        :root {
+            /* Dark Theme Colors */
+            --bg-primary: #0a0e27;
+            --bg-secondary: #111827;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            
+            /* Accent Colors */
+            --cyan: #00d4ff;
+            --blue: #0066ff;
+            --cyan-glow: rgba(0, 212, 255, 0.3);
+            --blue-glow: rgba(0, 102, 255, 0.3);
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            
+            /* Spacing */
+            --space-xs: 8px;
+            --space-sm: 12px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Glassmorphic effect helper */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Top Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--cyan);
+            box-shadow: 0 4px 20px var(--cyan-glow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-xl);
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px var(--cyan-glow);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+        
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: var(--space-sm) var(--space-md);
+            transition: var(--transition);
+        }
+        
+        .nav-item:hover {
+            color: var(--cyan);
+            text-shadow: 0 0 10px var(--cyan-glow);
+        }
+        
+        .nav-item.active {
+            color: var(--cyan);
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            box-shadow: 0 0 10px var(--cyan-glow);
+        }
+        
+        /* Main Layout */
+        .dashboard-container {
+            margin-top: 70px;
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(0, 212, 255, 0.2);
+            padding: var(--space-xl);
+            animation: slideRight 0.6s ease;
+        }
+        
+        @keyframes slideRight {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .profile-section {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto var(--space-md);
+            box-shadow: 0 0 30px var(--cyan-glow);
+            border: 3px solid var(--cyan);
+        }
+        
+        .profile-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .profile-roll {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .quick-links {
+            margin-top: var(--space-xl);
+        }
+        
+        .quick-link {
+            display: block;
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        
+        .quick-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: var(--space-xl);
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 102, 255, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            box-shadow: 0 8px 32px var(--cyan-glow);
+        }
+        
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .welcome-info {
+            display: flex;
+            gap: var(--space-xl);
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .welcome-info span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .welcome-info strong {
+            color: var(--cyan);
+        }
+        
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        /* Card Styles */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px var(--cyan-glow);
+            border-color: var(--cyan);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            color: var(--cyan);
+            text-shadow: 0 0 10px var(--cyan-glow);
+        }
+        
+        /* Club Cards */
+        .club-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            transition: var(--transition);
+        }
+        
+        .club-item:hover {
+            background: rgba(0, 212, 255, 0.08);
+            border-color: var(--cyan);
+            transform: translateX(5px);
+        }
+        
+        .club-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px var(--cyan-glow);
+        }
+        
+        .club-info {
+            flex: 1;
+        }
+        
+        .club-name {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .club-members {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .btn {
+            padding: var(--space-xs) var(--space-md);
+            border: 1px solid var(--cyan);
+            background: transparent;
+            color: var(--cyan);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        
+        .btn:hover {
+            background: var(--cyan);
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transform: scale(1.05);
+        }
+        
+        /* Event Cards */
+        .event-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            transition: var(--transition);
+        }
+        
+        .event-item:hover {
+            background: rgba(0, 102, 255, 0.08);
+            border-color: var(--blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--blue-glow);
+        }
+        
+        .event-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .event-datetime {
+            color: var(--cyan);
+            font-size: 0.9rem;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .event-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.4;
+        }
+        
+        .btn-register {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            border: none;
+            color: var(--text-primary);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-register:hover {
+            box-shadow: 0 0 25px var(--blue-glow);
+            transform: scale(1.02);
+        }
+        
+        .btn-register:active {
+            transform: scale(0.98);
+        }
+        
+        /* Activity Items */
+        .activity-item {
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--cyan);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        
+        .activity-item:hover {
+            background: rgba(0, 212, 255, 0.08);
+            border-left-width: 5px;
+            transform: translateX(5px);
+        }
+        
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .activity-icon {
+            font-size: 1.2rem;
+        }
+        
+        .activity-description {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .activity-timestamp {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: 2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: var(--space-lg);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-grid .card:last-child {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 var(--space-md);
+            }
+            
+            .nav-menu {
+                gap: var(--space-sm);
+            }
+            
+            .nav-item {
+                font-size: 0.85rem;
+                padding: var(--space-xs) var(--space-sm);
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                padding: var(--space-md);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-grid .card:last-child {
+                grid-column: span 1;
+            }
+            
+            .welcome-title {
+                font-size: 1.8rem;
+            }
+            
+            .welcome-info {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .nav-menu {
+                gap: var(--space-xs);
+            }
+            
+            .nav-item {
+                font-size: 0.75rem;
+                padding: var(--space-xs);
+            }
+            
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">KIET</div>
+        <ul class="nav-menu">
+            
+            <li class="nav-item">
+                <button class="nav-item" style="color: red; border-radius: 10px;" onclick="logout()">
+                    <a style="color: red;" href="/logout">
+                    Logout</a></button>
+                </li>
+
+        </ul>
+    </nav>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="profile-picture">👤</div>
+                <div class="profile-name">{{ user['name'] }}</div>
+                <div class="profile-roll">{{ user['UID'] }}</div>
+                <div class="profile-email" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">{{ user['email'] }}</div>
+            </div>
+            
+            <div class="quick-links">
+                <a href="#" class="quick-link">📝 Edit Profile</a>
+                <a href="#" class="quick-link">🎓 View Certificates</a>
+                <a href="#" class="quick-link">⚙️ Settings</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h1 class="welcome-title">Welcome, {{ user['name'] }}</h1>
+                <div class="welcome-info">
+                    <span><strong>UID:</strong> {{ user['UID'] }}</span>
+                    <span><strong>Email:</strong> {{ user['email'] }}</span>
+                </div>
+            </section>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- My Clubs -->
+                <div class="card">
+                    <h2 class="card-title">My Clubs</h2>
+                    
+                    <div class="club-item">
+                        <div class="club-icon"></div>
+                        <div class="club-info">
+                            <div class="club-name">Tech Innovators Club</div>
+                            <div class="club-members">156 members</div>
+                        </div>
+                        <button class="btn">View Details</button>
+                    </div>
+                    
+                    <div class="club-item">
+                        <div class="club-icon"></div>
+                        <div class="club-info">
+                            <div class="club-name">Design &amp; UI Club</div>
+                            <div class="club-members">89 members</div>
+                        </div>
+                        <button class="btn">View Details</button>
+                    </div>
+                    
+                    <div class="club-item">
+                        <div class="club-icon"></div>
+                        <div class="club-info">
+                            <div class="club-name">AI &amp; ML Society</div>
+                            <div class="club-members">203 members</div>
+                        </div>
+                        <button class="btn">View Details</button>
+                    </div>
+                    
+                    <div class="club-item">
+                        <div class="club-icon"></div>
+                        <div class="club-info">
+                            <div class="club-name">Coding Ninjas</div>
+                            <div class="club-members">342 members</div>
+                        </div>
+                        <button class="btn">View Details</button>
+                    </div>
+                    
+                    <div class="club-item">
+                        <div class="club-icon"></div>
+                        <div class="club-info">
+                            <div class="club-name">Web Development Club</div>
+                            <div class="club-members">127 members</div>
+                        </div>
+                        <button class="btn">View Details</button>
+                    </div>
+                    
+                    <div class="club-item">
+                        <div class="club-icon"></div>
+                        <div class="club-info">
+                            <div class="club-name">Robotics Club</div>
+                            <div class="club-members">98 members</div>
+                        </div>
+                        <button class="btn">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="card">
+                    <h2 class="card-title">Upcoming Events</h2>
+                    
+                    <div class="event-item">
+                        <div class="event-name">Web Development Workshop 2025</div>
+                        <div class="event-datetime">📅 15 Nov 2025 • ⏰ 2:00 PM - 4:00 PM</div>
+                        <div class="event-description">Learn modern web development with React and Node.js</div>
+                        <button class="btn-register">Register</button>
+                    </div>
+                    
+                    <div class="event-item">
+                        <div class="event-name">AI Hackathon Series</div>
+                        <div class="event-datetime">📅 22 Nov 2025 • ⏰ 10:00 AM - 6:00 PM</div>
+                        <div class="event-description">Build AI solutions and compete for exciting prizes</div>
+                        <button class="btn-register">Register</button>
+                    </div>
+                    
+                    <div class="event-item">
+                        <div class="event-name">Design Thinking Workshop</div>
+                        <div class="event-datetime">📅 18 Nov 2025 • ⏰ 3:30 PM - 5:30 PM</div>
+                        <div class="event-description">Master UX/UI design principles and tools</div>
+                        <button class="btn-register">Register</button>
+                    </div>
+                    
+                    
+                </div>
+
+                <!-- Recent Activities -->
+                <div class="card">
+                    <h2 class="card-title">Recent Activities</h2>
+                    
+                    <div class="activity-item">
+                        <div class="activity-header">
+                            <span class="activity-icon">📝</span>
+                            <span class="activity-description">Registered for Web Development Workshop</span>
+                        </div>
+                        <div class="activity-timestamp">2 hours ago</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-header">
+                            <span class="activity-icon">⭐</span>
+                            <span class="activity-description">Received Certificate in Python Programming</span>
+                        </div>
+                        <div class="activity-timestamp">1 day ago</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-header">
+                            <span class="activity-icon">👥</span>
+                            <span class="activity-description">Joined AI &amp; ML Society</span>
+                        </div>
+                        <div class="activity-timestamp">3 days ago</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-header">
+                            <span class="activity-icon">✅</span>
+                            <span class="activity-description">Completed GitHub Profile Setup</span>
+                        </div>
+                        <div class="activity-timestamp">5 days ago</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-header">
+                            <span class="activity-icon">🎉</span>
+                            <span class="activity-description">Attended Tech Meetup 2025</span>
+                        </div>
+                        <div class="activity-timestamp">1 week ago</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-header">
+                            <span class="activity-icon">💾</span>
+                            <span class="activity-description">Submitted Project Portfolio</span>
+                        </div>
+                        <div class="activity-timestamp">2 weeks ago</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 KIET Clubs Dashboard
+    </footer>
+
+    <script>
+
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation items click handler
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Handle logout
+                    if(this.textContent === 'Logout') {
+                        if(confirm('Are you sure you want to logout?')) {
+                            alert('Logging out...');
+                            // In a real app, this would redirect to login page
+                        }
+                    }
+                });
+            });
+            
+            // Club view details buttons
+            const clubButtons = document.querySelectorAll('.club-item .btn');
+            clubButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const clubName = this.parentElement.querySelector('.club-name').textContent;
+                    alert(`Viewing details for: ${clubName}`);
+                });
+            });
+            
+            // Event registration buttons
+            const registerButtons = document.querySelectorAll('.btn-register');
+            registerButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const eventName = this.parentElement.querySelector('.event-name').textContent;
+                    if(confirm(`Register for ${eventName}?`)) {
+                        this.textContent = 'Registered ✓';
+                        this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                        this.disabled = true;
+                        this.style.cursor = 'not-allowed';
+                        
+                        // Add activity
+                        addRecentActivity('📝', `Registered for ${eventName}`, 'Just now');
+                    }
+                });
+            });
+            
+            // Quick links
+            const quickLinks = document.querySelectorAll('.quick-link');
+            quickLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const action = this.textContent.trim();
+                    alert(`Opening: ${action}`);
+                });
+            });
+            
+            // Function to add recent activity
+            function addRecentActivity(icon, description, timestamp) {
+                const activitiesCard = document.querySelector('.card:last-child');
+                const newActivity = document.createElement('div');
+                newActivity.className = 'activity-item';
+                newActivity.style.animation = 'fadeIn 0.5s ease';
+                newActivity.innerHTML = `
+                    <div class="activity-header">
+                        <span class="activity-icon">${icon}</span>
+                        <span class="activity-description">${description}</span>
+                    </div>
+                    <div class="activity-timestamp">${timestamp}</div>
+                `;
+                
+                const firstActivity = activitiesCard.querySelector('.activity-item');
+                if(firstActivity) {
+                    activitiesCard.insertBefore(newActivity, firstActivity);
+                }
+            }
+            
+            // Add smooth scrolling
+            document.documentElement.style.scrollBehavior = 'smooth';
+        });
+    </script>
+</body>
+</html>

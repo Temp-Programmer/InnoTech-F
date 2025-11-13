@@ -1,0 +1,3411 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        function initializeThemeOnLoad() {
+        html.setAttribute('data-color-scheme', 'dark');
+        themeIcon.textContent = '☀️';
+        }
+        initializeThemeOnLoad();
+    </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubVerce of KIET</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --radius-base: 8px;
+            --radius-lg: 125px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-color-scheme="dark"] {
+            --color-gray-400-rgb: 119, 124, 124;
+            --color-teal-300-rgb: 50, 184, 198;
+            --color-gray-300-rgb: 167, 169, 169;
+            --color-gray-200-rgb: 245, 245, 245;
+            --color-background: #0a0e27;
+            --color-surface: linear-gradient(135deg, #1a1f3a 0%, #0f1629 100%);
+            --color-text: #e8eef7;
+            --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.85);
+            --color-primary: #00d4ff;
+            --color-primary-hover: #00e0ff;
+            --color-secondary: rgba(0, 212, 255, 0.12);
+            --color-secondary-hover: rgba(0, 212, 255, 0.22);
+            --color-border: rgba(0, 212, 255, 0.25);
+            --color-card-border: rgba(0, 212, 255, 0.3);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-color-scheme="light"]) {
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300-rgb: 50, 184, 198;
+                --color-gray-300-rgb: 167, 169, 169;
+                --color-gray-200-rgb: 245, 245, 245;
+                --color-background: #0a0e27;
+                --color-surface: linear-gradient(135deg, #1a1f3a 0%, #0f1629 100%);
+                --color-text: #e8eef7;
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.85);
+                --color-primary: #00d4ff;
+                --color-primary-hover: #00e0ff;
+                --color-secondary: rgba(0, 212, 255, 0.12);
+                --color-secondary-hover: rgba(0, 212, 255, 0.22);
+                --color-border: rgba(0, 212, 255, 0.25);
+                --color-card-border: rgba(0, 212, 255, 0.3);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: var(--space-32);
+            position: relative;
+        }
+
+        [data-color-scheme="dark"] body {
+            background: linear-gradient(135deg, #0a0e27 0%, #050812 50%, #0a0e27 100%);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 153, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        [data-color-scheme="dark"] body::before {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 153, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.08) 0%, transparent 60%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: var(--space-16);
+            background: linear-gradient(135deg, #00d4ff 0%, #00e0ff 25%, #0099ff 50%, #0066ff 75%, #00d4ff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            letter-spacing: -0.04em;
+            text-shadow: 0 12px 48px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 153, 255, 0.4);
+            animation: titleGlow 3s ease-in-out infinite, gradientShiftTitle 5s ease infinite;
+            position: relative;
+            filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.5));
+            text-transform: uppercase;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                filter: brightness(1) drop-shadow(0 0 30px rgba(0, 212, 255, 0.5));
+            }
+            50% {
+                filter: brightness(1.3) drop-shadow(0 0 50px rgba(0, 212, 255, 0.8));
+            }
+        }
+
+        @keyframes gradientShiftTitle {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            margin-bottom: 48px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .button-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 102, 255, 0.1));
+            border-radius: 24px;
+            border: 3px solid rgba(0, 153, 255, 0.3);
+            box-shadow: 0 16px 48px rgba(0, 153, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-bar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: rotateGradient 10s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .subdomain-bar {
+            display: none;
+            flex-wrap: wrap;
+            gap: var(--space-12);
+            margin-bottom: var(--space-32);
+            padding: var(--space-24);
+            background: linear-gradient(135deg, rgba(50, 184, 198, 0.1), rgba(33, 128, 141, 0.08));
+            border-radius: 16px;
+            border: 2px solid var(--color-primary);
+            box-shadow: 0 8px 32px rgba(33, 128, 141, 0.15);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .subdomain-bar.show {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subdomain-btn {
+            padding: var(--space-8) var(--space-16);
+            background-color: var(--color-surface);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-base);
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            font-family: var(--font-family-base);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .subdomain-btn:hover {
+            background-color: var(--color-secondary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .subdomain-btn.active {
+            background: linear-gradient(135deg, var(--color-teal-400), var(--color-primary));
+            color: var(--color-cream-50);
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 8px rgba(33, 128, 141, 0.25);
+        }
+
+        .domain-btn {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 212, 255, 0.05));
+            border: 2px solid rgba(0, 153, 255, 0.3);
+            border-radius: 16px;
+            color: var(--color-text);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: var(--font-family-base);
+            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .domain-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+
+        .domain-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+
+        .domain-btn:hover::before {
+            left: 100%;
+        }
+
+        .domain-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .domain-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 153, 255, 0.15));
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 32px rgba(0, 153, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+
+        .domain-btn.active {
+            background: linear-gradient(135deg, #00d4ff, #0099ff, #0066ff);
+            color: white;
+            border-color: #00d4ff;
+            box-shadow: 0 12px 36px rgba(0, 153, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            animation: activeButtonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes activeButtonPulse {
+            0%, 100% {
+                box-shadow: 0 12px 36px rgba(0, 153, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 12px 36px rgba(0, 153, 255, 0.7), 0 0 30px rgba(0, 212, 255, 0.5);
+            }
+        }
+
+        .clubs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-20);
+            min-height: 200px;
+        }
+
+        .club-card {
+            background: linear-gradient(135deg, var(--color-surface) 0%, rgba(0, 212, 255, 0.08) 100%);
+            border: 3px solid rgba(0, 153, 255, 0.2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 8px 24px rgba(0, 153, 255, 0.15);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out forwards;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        [data-color-scheme="dark"] .club-card {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0f1629 100%);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 0 12px 36px rgba(0, 212, 255, 0.25), 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+
+        [data-color-scheme="dark"] .club-card:hover {
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.45), 0 0 40px rgba(0, 212, 255, 0.25);
+            border-color: #00d4ff;
+        }
+
+        .club-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #00d4ff, #0099ff, #0066ff, #0099ff, #00d4ff);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        .club-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .club-card:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .club-card:hover {
+            box-shadow: 0 20px 60px rgba(0, 153, 255, 0.35), 0 0 40px rgba(0, 212, 255, 0.2);
+            transform: translateY(-12px) scale(1.03);
+            border-color: #00d4ff;
+        }
+
+        .club-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-12);
+            letter-spacing: -0.01em;
+        }
+
+        .club-description {
+            font-size: 15px;
+            color: var(--color-text);
+            margin-bottom: var(--space-16);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .club-meta {
+            display: flex;
+            gap: var(--space-12);
+            font-size: 15px;
+            color: var(--color-text);
+            align-items: center;
+            padding: var(--space-12);
+            background-color: var(--color-secondary);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-12);
+            font-weight: 600;
+        }
+
+        .club-tag {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400), var(--color-teal-600));
+            color: var(--color-cream-50);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: var(--space-16);
+            box-shadow: 0 4px 12px rgba(33, 128, 141, 0.3);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--space-32);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-base);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-16);
+            opacity: 0.3;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: var(--space-24);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 24px;
+            padding-right: 50px;
+            font-size: 16px;
+            font-family: var(--font-family-base);
+            background: linear-gradient(135deg, var(--color-surface) 0%, rgba(33, 128, 141, 0.05) 100%);
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            color: var(--color-text);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(var(--color-teal-500-rgb), 0.2), 0 8px 24px rgba(33, 128, 141, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-input::placeholder {
+            color: var(--color-text-secondary);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: var(--space-12);
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--color-text-secondary);
+            color: var(--color-surface);
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .search-clear:hover {
+            background: var(--color-text);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .search-results-info {
+            text-align: center;
+            margin-bottom: var(--space-16);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            padding: var(--space-8);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-standard);
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .club-modal {
+            background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-secondary) 100%);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.7);
+            transition: transform var(--duration-normal) var(--ease-standard);
+        }
+
+        .modal-overlay.show .club-modal {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--space-16);
+            right: var(--space-16);
+            background: var(--color-text-secondary);
+            color: var(--color-surface);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: var(--font-size-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .modal-close:hover {
+            background: var(--color-text);
+            transform: scale(1.1);
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-20);
+            padding-right: var(--space-32);
+            letter-spacing: -0.02em;
+        }
+
+        .modal-section {
+            margin-bottom: var(--space-24);
+        }
+
+        .modal-section h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-12);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .modal-section p {
+            color: var(--color-text);
+            line-height: 1.7;
+            margin-bottom: var(--space-12);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
+
+        .stat-card {
+            background: var(--color-secondary);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--color-text);
+            margin-top: var(--space-8);
+            font-weight: 600;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-8);
+            margin-bottom: var(--space-24);
+        }
+
+        .modal-tag {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-600));
+            color: var(--color-cream-50);
+            border-radius: var(--radius-base);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .join-button {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-600));
+            color: var(--color-cream-50);
+            border: none;
+            padding: var(--space-12) var(--space-24);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(33, 128, 141, 0.3);
+        }
+
+        .join-button:hover {
+            background: linear-gradient(135deg, var(--color-primary-hover), var(--color-teal-700));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(33, 128, 141, 0.4);
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-16);
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: var(--space-8);
+        }
+
+        .review-card {
+            background: var(--color-secondary);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateX(5px);
+            border-color: var(--color-primary);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .review-student {
+            font-weight: 700;
+            color: var(--color-text);
+            font-size: 15px;
+        }
+
+        .review-rating {
+            color: #FFD700;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .review-year {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            margin-bottom: var(--space-8);
+        }
+
+        .review-comment {
+            color: var(--color-text);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .club-rating-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-12);
+            padding: var(--space-20);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+            border-radius: var(--radius-lg);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .rating-stars-large {
+            font-size: 32px;
+            color: #FFD700;
+            letter-spacing: 4px;
+        }
+
+        .rating-score {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .rating-count {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+        }
+
+        .club-rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.1));
+            border: 1.5px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-top: var(--space-12);
+        }
+
+        .club-rating-stars {
+            color: #FFD700;
+            font-size: 14px;
+        }
+
+        .announcement-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400));
+            color: var(--color-cream-50);
+            padding: var(--space-20) var(--space-24);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(33, 128, 141, 0.3);
+            z-index: 999;
+            max-width: 380px;
+            cursor: move;
+            user-select: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-12);
+            font-weight: 700;
+            font-size: var(--font-size-base);
+            letter-spacing: 0.02em;
+        }
+
+        .announcement-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--color-cream-50);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .announcement-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .announcement-content {
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--color-cream-50);
+            overflow: hidden;
+            height: 110px;
+            position: relative;
+        }
+
+        .announcement-scroll {
+            animation: scrollUp 15s linear infinite;
+        }
+
+        @keyframes scrollUp {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        .announcement-item {
+            margin-bottom: var(--space-16);
+            padding-bottom: var(--space-16);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .announcement-item:last-child {
+            border-bottom: none;
+        }
+
+        .announcement-date {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-top: var(--space-8);
+            text-align: right;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            z-index: 999;
+            margin-bottom: 60px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, var(--color-surface), rgba(33, 128, 141, 0.1));
+            color: var(--color-text);
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--color-border);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-family: var(--font-family-base);
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400));
+            color: var(--color-cream-50);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(33, 128, 141, 0.3);
+            border-color: var(--color-primary);
+        }
+
+        .events-shortcut {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400));
+            color: var(--color-cream-50);
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(33, 128, 141, 0.3);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .events-shortcut:hover {
+            background: linear-gradient(135deg, var(--color-primary-hover), var(--color-teal-600));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 32px rgba(33, 128, 141, 0.4);
+        }
+
+        .events-shortcut:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .theme-toggle {
+            width: 24px;
+            height: 24px;
+            font-size: 20px;
+        }
+
+        .events-section-wrapper {
+            background: linear-gradient(135deg, rgba(33, 128, 141, 0.03), rgba(50, 184, 198, 0.05));
+            padding: 60px 0;
+            margin-top: 60px;
+            border-top: 3px solid var(--color-border);
+            border-bottom: 3px solid var(--color-border);
+        }
+
+        .events-header {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: var(--space-12);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .events-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-32);
+            text-align: center;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-24);
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, var(--color-surface) 0%, rgba(50, 184, 198, 0.08) 100%);
+            border: 2px solid var(--color-card-border);
+            border-radius: 16px;
+            padding: var(--space-24);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-teal-300));
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(33, 128, 141, 0.2);
+            border-color: var(--color-primary);
+        }
+
+        .event-date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400));
+            color: var(--color-cream-50);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: var(--space-16);
+            letter-spacing: 0.02em;
+        }
+
+        .event-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-12);
+            letter-spacing: -0.01em;
+        }
+
+        .event-club {
+            font-size: 14px;
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-12);
+        }
+
+        .event-description {
+            font-size: 15px;
+            color: var(--color-text);
+            line-height: 1.6;
+            margin-bottom: var(--space-16);
+            font-weight: 500;
+        }
+
+        .event-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+            padding: var(--space-16);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .event-detail-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            color: var(--color-text);
+        }
+
+        .event-register-btn {
+            margin-top: var(--space-16);
+            width: 100%;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-600));
+            color: var(--color-cream-50);
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(33, 128, 141, 0.3);
+        }
+
+        .event-register-btn:hover {
+            background: linear-gradient(135deg, var(--color-primary-hover), var(--color-teal-700));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(33, 128, 141, 0.4);
+        }
+
+        .write-review-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-16);
+            padding: var(--space-20);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            border: 1px solid var(--color-border);
+        }
+
+        .review-input {
+            width: 100%;
+            padding: var(--space-12) var(--space-16);
+            font-size: 15px;
+            font-family: var(--font-family-base);
+            background: var(--color-surface);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-base);
+            color: var(--color-text);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .review-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(var(--color-teal-500-rgb), 0.2);
+        }
+
+        .review-textarea {
+            width: 100%;
+            padding: var(--space-12) var(--space-16);
+            font-size: 15px;
+            font-family: var(--font-family-base);
+            background: var(--color-surface);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-base);
+            color: var(--color-text);
+            resize: vertical;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .review-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(var(--color-teal-500-rgb), 0.2);
+        }
+
+        .rating-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-12);
+            background: var(--color-surface);
+            border-radius: var(--radius-base);
+        }
+
+        .star-rating {
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            filter: grayscale(100%);
+            opacity: 0.4;
+        }
+
+        .star-rating:hover {
+            transform: scale(1.2);
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .star-rating.selected {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .submit-review-btn {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-600));
+            color: var(--color-cream-50);
+            border: none;
+            padding: var(--space-12) var(--space-24);
+            border-radius: var(--radius-base);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(33, 128, 141, 0.3);
+        }
+
+        .submit-review-btn:hover {
+            background: linear-gradient(135deg, var(--color-primary-hover), var(--color-teal-700));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(33, 128, 141, 0.4);
+        }
+
+
+        .announcements-section-wrapper {
+            background: linear-gradient(135deg, rgba(50, 184, 198, 0.05), rgba(33, 128, 141, 0.08));
+            padding: 60px 0;
+            margin-top: 0;
+            border-top: 3px solid var(--color-border);
+        }
+
+        .announcements-header {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: var(--space-12);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .announcements-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-32);
+            text-align: center;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .announcements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-24);
+        }
+
+        .announcement-card {
+            background: linear-gradient(135deg, var(--color-surface) 0%, rgba(50, 184, 198, 0.08) 100%);
+            border: 2px solid var(--color-card-border);
+            border-radius: 16px;
+            padding: var(--space-24);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .announcement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-teal-300));
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(33, 128, 141, 0.2);
+            border-color: var(--color-primary);
+        }
+
+        .announcement-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-400));
+            color: var(--color-cream-50);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: var(--space-16);
+            letter-spacing: 0.02em;
+        }
+
+        .announcement-card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-12);
+            letter-spacing: -0.01em;
+        }
+
+        .announcement-card-club {
+            font-size: 14px;
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-12);
+        }
+
+        .announcement-card-description {
+            font-size: 15px;
+            color: var(--color-text);
+            line-height: 1.6;
+            margin-bottom: var(--space-16);
+            font-weight: 500;
+        }
+
+        .announcement-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+            padding: var(--space-16);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .announcement-detail-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            color: var(--color-text);
+        }
+
+
+        @media (max-width: 768px) {
+            body {
+                padding: var(--space-16);
+            }
+
+            .button-bar {
+                gap: var(--space-8);
+            }
+
+            .domain-btn {
+                padding: var(--space-8) var(--space-16);
+                font-size: var(--font-size-sm);
+            }
+
+            .clubs-container {
+                grid-template-columns: 1fr;
+            }
+
+            .announcement-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: var(--space-16);
+                max-width: 100%;
+                cursor: default;
+            }
+
+            .nav-bar {
+                flex-wrap: wrap;
+                top: 10px;
+                right: 10px;
+            }
+
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <button class="nav-btn" onclick="showAboutUs()">
+            <span>About</span>
+        </button>
+        <button class="nav-btn" onclick="showQueries()">
+            <span>Queries</span>
+        </button>
+        <button class="nav-btn" onclick="showEventCalendar()">
+            <span>Calendar</span>
+        </button>
+        
+        <button class="nav-btn"  onclick="scrollToEvents()">
+            <span>Events</span>
+        </button>
+            
+        <button class="nav-btn theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+            <span id="themeIcon">🌙</span>
+        </button>
+        <button class="nav-btn" onclick="window.location.href='/login'">
+            <span>Login</span>
+        </button>
+        <button class="nav-btn" onclick="window.location.href='/register'">
+            <span>Register</span>
+        </button>        
+    </div>
+
+    <!-- Draggable Announcement Section -->
+    <div class="announcement-container" id="announcementBox">
+        <div class="announcement-header" onclick="scrollToAnnouncements()">
+            📢 Announcements
+            <button class="announcement-close" onclick="closeAnnouncement()">✕</button>
+        </div>
+        <div class="announcement-content">
+            <div class="announcement-scroll" id="announcementScroll">
+                <div class="announcement-item">
+                    <strong>GDG Club Registration</strong><br>
+                    Registration open: Nov 10-20, 2025<br>
+                    AI/ML & DSA workshops starting soon!
+                </div>
+                <div class="announcement-item">
+                    <strong>Innogeeks Web Dev</strong><br>
+                    Registration: Nov 12-22, 2025<br>
+                    Learn modern web technologies
+                </div>
+                <div class="announcement-item">
+                    <strong>MLSA Chapter</strong><br>
+                    Registration: Nov 15-25, 2025<br>
+                    Microsoft technologies & DSA training
+                </div>
+                <div class="announcement-item">
+                    <strong>TEDx KIET</strong><br>
+                    Registration: Nov 8-18, 2025<br>
+                    Join the innovation movement
+                </div>
+                <div class="announcement-item">
+                    <strong>The Phoenix Dance Club</strong><br>
+                    Registration: Nov 10-20, 2025<br>
+                    All dance styles welcome!
+                </div>
+                <div class="announcement-item">
+                    <strong>Tech Fest 2025!</strong><br>
+                    Event dates: Nov 15-17, 2025<br>
+                    Competitions, workshops & tech talks
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 80px;">
+        <h1>The ClubVerse of KIET</h1>
+        <p class="subtitle" style="background: linear-gradient(135deg, #00d4ff, #0099ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">The Invincible</p>
+        <p class="subtitle" style="margin-top: -32px;">Explore and Join Campus Clubs</p>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search clubs by name or description..." oninput="searchClubs()">
+            <button class="search-clear" id="clearSearch" onclick="clearSearch()" style="display: none;">✕</button>
+        </div>
+
+        <div class="button-bar" id="buttonBar">
+            <button class="domain-btn active" data-domain="all" onclick="filterClubs('all')">All Clubs</button>
+            <button class="domain-btn" data-domain="technical" onclick="filterClubs('technical')">Technical</button>
+            <button class="domain-btn" data-domain="cultural" onclick="filterClubs('cultural')">Cultural</button>
+            <button class="domain-btn" data-domain="sports" onclick="filterClubs('sports')">Sports</button>
+            <button class="domain-btn" data-domain="social" onclick="filterClubs('social')">Social Service</button>
+            <button class="domain-btn" data-domain="entrepreneurship" onclick="filterClubs('entrepreneurship')">Entrepreneurship</button>
+        </div>
+
+        <div class="subdomain-bar" id="subdomainBar">
+            <button class="subdomain-btn" data-subdomain="dsa" onclick="filterBySubdomain('dsa')">DSA</button>
+            <button class="subdomain-btn" data-subdomain="cp" onclick="filterBySubdomain('cp')">Competitive Programming</button>
+            <button class="subdomain-btn" data-subdomain="webdev" onclick="filterBySubdomain('webdev')">Web Dev</button>
+            <button class="subdomain-btn" data-subdomain="appdev" onclick="filterBySubdomain('appdev')">App Dev</button>
+            <button class="subdomain-btn" data-subdomain="uiux" onclick="filterBySubdomain('uiux')">UI/UX</button>
+            <button class="subdomain-btn" data-subdomain="aiml" onclick="filterBySubdomain('aiml')">AI/ML</button>
+            <button class="subdomain-btn" data-subdomain="cloud" onclick="filterBySubdomain('cloud')">Cloud Computing</button>
+            <button class="subdomain-btn" data-subdomain="deeplearning" onclick="filterBySubdomain('deeplearning')">Deep Learning</button>
+            <button class="subdomain-btn" data-subdomain="os" onclick="filterBySubdomain('os')">OS</button>
+            <button class="subdomain-btn" data-subdomain="android" onclick="filterBySubdomain('android')">Android</button>
+            <button class="subdomain-btn" data-subdomain="flutter" onclick="filterBySubdomain('flutter')">Flutter</button>
+            <button class="subdomain-btn" data-subdomain="robotics" onclick="filterBySubdomain('robotics')">Robotics</button>
+            <button class="subdomain-btn" data-subdomain="cybersecurity" onclick="filterBySubdomain('cybersecurity')">Cyber Security</button>
+        </div>
+
+        <div class="subdomain-bar" id="culturalSubdomainBar">
+            <button class="subdomain-btn" data-subdomain="poetry" onclick="filterBySubdomain('poetry')">Poetry</button>
+            <button class="subdomain-btn" data-subdomain="writing" onclick="filterBySubdomain('writing')">Writing</button>
+            <button class="subdomain-btn" data-subdomain="speaking" onclick="filterBySubdomain('speaking')">Speaking</button>
+            <button class="subdomain-btn" data-subdomain="singing" onclick="filterBySubdomain('singing')">Singing</button>
+            <button class="subdomain-btn" data-subdomain="dancing" onclick="filterBySubdomain('dancing')">Dancing</button>
+            <button class="subdomain-btn" data-subdomain="instruments" onclick="filterBySubdomain('instruments')">Instruments</button>
+            <button class="subdomain-btn" data-subdomain="marketing" onclick="filterBySubdomain('marketing')">Marketing</button>
+            <button class="subdomain-btn" data-subdomain="modelling" onclick="filterBySubdomain('modelling')">Modelling</button>
+            <button class="subdomain-btn" data-subdomain="photography" onclick="filterBySubdomain('photography')">Photography</button>
+            <button class="subdomain-btn" data-subdomain="contentwriting" onclick="filterBySubdomain('contentwriting')">Content Writing</button>
+            <button class="subdomain-btn" data-subdomain="fashion" onclick="filterBySubdomain('fashion')">Fashion</button>
+        </div>
+
+        <div class="subdomain-bar" id="sportsSubdomainBar">
+            <button class="subdomain-btn" data-subdomain="cricket" onclick="filterBySubdomain('cricket')">Cricket</button>
+            <button class="subdomain-btn" data-subdomain="badminton" onclick="filterBySubdomain('badminton')">Badminton</button>
+            <button class="subdomain-btn" data-subdomain="kabaddi" onclick="filterBySubdomain('kabaddi')">Kabaddi</button>
+            <button class="subdomain-btn" data-subdomain="billiards" onclick="filterBySubdomain('billiards')">Billiards</button>
+            <button class="subdomain-btn" data-subdomain="volleyball" onclick="filterBySubdomain('volleyball')">Volley Ball</button>
+            <button class="subdomain-btn" data-subdomain="basketball" onclick="filterBySubdomain('basketball')">Basket Ball</button>
+            <button class="subdomain-btn" data-subdomain="shooting" onclick="filterBySubdomain('shooting')">Shooting</button>
+            <button class="subdomain-btn" data-subdomain="tabletennis" onclick="filterBySubdomain('tabletennis')">Table Tennis</button>
+        </div>
+
+        <div class="clubs-container" id="clubsContainer"></div>
+    </div>
+
+    <!-- Separate Events Section -->
+    <div class="events-section-wrapper">
+        <div class="container">
+            <h2 class="events-header">🎉 Upcoming Events</h2>
+            <p class="events-subtitle">Discover exciting events organized by our campus clubs</p>
+            <div class="events-container" id="eventsContainer"></div>
+        </div>
+    <!-- Announcements Section -->
+    <div class="announcements-section-wrapper" id="announcementsSection">
+        <div class="container">
+            <h2 class="announcements-header">📢 Latest Announcements</h2>
+            <p class="announcements-subtitle">Stay updated with club registrations and important dates</p>
+            <div class="announcements-grid" id="announcementsGrid">
+                <div class="announcement-card">
+                    <span class="announcement-badge">📅 Open Now</span>
+                    <h3 class="announcement-card-title">GDG Club Registration</h3>
+                    <div class="announcement-card-club">🎯 Google Developer Group</div>
+                    <p class="announcement-card-description">Registration open for AI/ML & DSA workshops. Learn cutting-edge technologies from industry experts!</p>
+                    <div class="announcement-details">
+                        <div class="announcement-detail-item">
+                            <span>📆</span>
+                            <span>Registration: Nov 10-20, 2025</span>
+                        </div>
+                        <div class="announcement-detail-item">
+                            <span>📧</span>
+                            <span>Contact: gdg@kiet.edu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card">
+                    <span class="announcement-badge">📅 Open Now</span>
+                    <h3 class="announcement-card-title">Innogeeks Web Development</h3>
+                    <div class="announcement-card-club">🎯 Innogeeks</div>
+                    <p class="announcement-card-description">Join us to learn modern web technologies including React, Node.js, and more!</p>
+                    <div class="announcement-details">
+                        <div class="announcement-detail-item">
+                            <span>📆</span>
+                            <span>Registration: Nov 12-22, 2025</span>
+                        </div>
+                        <div class="announcement-detail-item">
+                            <span>📧</span>
+                            <span>Contact: innogeeks@kiet.edu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card">
+                    <span class="announcement-badge">📅 Open Now</span>
+                    <h3 class="announcement-card-title">MLSA Chapter Opening</h3>
+                    <div class="announcement-card-club">🎯 Microsoft Learn Student Ambassadors</div>
+                    <p class="announcement-card-description">Registration open for Microsoft technologies & DSA training program.</p>
+                    <div class="announcement-details">
+                        <div class="announcement-detail-item">
+                            <span>📆</span>
+                            <span>Registration: Nov 15-25, 2025</span>
+                        </div>
+                        <div class="announcement-detail-item">
+                            <span>📧</span>
+                            <span>Contact: mlsa@kiet.edu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card">
+                    <span class="announcement-badge">📅 Open Now</span>
+                    <h3 class="announcement-card-title">TEDx KIET Recruitment</h3>
+                    <div class="announcement-card-club">🎯 TEDx KIET</div>
+                    <p class="announcement-card-description">Be part of the innovation movement! Join TEDx organizing committee.</p>
+                    <div class="announcement-details">
+                        <div class="announcement-detail-item">
+                            <span>📆</span>
+                            <span>Registration: Nov 8-18, 2025</span>
+                        </div>
+                        <div class="announcement-detail-item">
+                            <span>📧</span>
+                            <span>Contact: tedx@kiet.edu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card">
+                    <span class="announcement-badge">📅 Open Now</span>
+                    <h3 class="announcement-card-title">Phoenix Dance Club</h3>
+                    <div class="announcement-card-club">🎯 The Phoenix Dance Club</div>
+                    <p class="announcement-card-description">All dance styles welcome! Join us for exciting performances and competitions.</p>
+                    <div class="announcement-details">
+                        <div class="announcement-detail-item">
+                            <span>📆</span>
+                            <span>Registration: Nov 10-20, 2025</span>
+                        </div>
+                        <div class="announcement-detail-item">
+                            <span>📧</span>
+                            <span>Contact: phoenix@kiet.edu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement-card">
+                    <span class="announcement-badge">🎉 Coming Soon</span>
+                    <h3 class="announcement-card-title">Tech Fest 2025</h3>
+                    <div class="announcement-card-club">🎯 Technical Clubs Collective</div>
+                    <p class="announcement-card-description">Annual tech festival featuring competitions, workshops & tech talks!</p>
+                    <div class="announcement-details">
+                        <div class="announcement-detail-item">
+                            <span>📆</span>
+                            <span>Event Dates: Nov 15-17, 2025</span>
+                        </div>
+                        <div class="announcement-detail-item">
+                            <span>📧</span>
+                            <span>Contact: techfest@kiet.edu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <div class="container">
+
+        <!-- Club Details Modal -->
+        <div class="modal-overlay" id="clubModal" >
+            <div class="club-modal" style="border-radius: 20px 20px 20px 20px;">
+                <button class="modal-close" onclick="closeClubModal()">✕</button>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        // Club data structure
+        const clubsData = [
+            {
+                name: "GDG Club",
+                domain: "technical",
+                subdomain: "aiml",
+                description: "Google Developer Group - Learn AI/ML, DSA, and cutting-edge technologies",
+                members: 200,
+                rating: 4.7,
+                totalRatings: 145,
+                founded: "2018",
+                meetings: "Weekly",
+                contact: "gdg@kiet.edu",
+                registrationStart: "Nov 10, 2025",
+                registrationEnd: "Nov 20, 2025",
+                logo: "https://www.kiet.edu/uploads/department/student_club/499741750.jpg",
+                activities: ["AI/ML Workshops", "Coding Bootcamps", "Tech Talks", "Hackathons", "Google Developer Events"],
+                achievements: ["Winner - National AI Competition 2023", "Best Technical Club Award 2022", "500+ Students Trained"],
+                requirements: "Basic programming knowledge preferred",
+                president: {
+                    name: "Arjun Mehta",
+                    phone: "+91 98765 43210",
+                    email: "arjun.mehta@kiet.edu"
+                },
+                coordinator: {
+                    name: "Dr. Priya Sharma",
+                    phone: "+91 98765 43211",
+                    email: "priya.sharma@kiet.edu"
+                },
+                instagram: "@gdg_kiet",
+                reviews: [
+                    { student: "Rahul Sharma", rating: 5, comment: "Best club for AI/ML enthusiasts! Great mentors and hands-on projects.", year: "3rd Year CSE" },
+                    { student: "Priya Gupta", rating: 4, comment: "Learned a lot about deep learning and got to work on real projects.", year: "2nd Year IT" },
+                    { student: "Amit Kumar", rating: 5, comment: "Amazing workshops and very supportive community. Highly recommend!", year: "4th Year CSE" }
+                ]
+            },
+            {
+                name: "DSDL",
+                domain: "technical",
+                subdomain: "deeplearning",
+                description: "Data Science and Deep Learning club for neural networks and AI research",
+                logo: "https://www.kiet.edu/uploads/department/student_club/858949259.jpg",
+                members: 85,
+                rating: 4.4
+            },
+            {
+                name: "Innogeeks",
+                domain: "technical",
+                subdomain: "webdev",
+                description: "Web development club focused on modern web technologies and innovation",
+                logo: "https://www.kiet.edu/uploads/department/student_club/187446816.jpg",
+                members: 120
+            },
+            {
+                name: "Kavanjali",
+                domain: "cultural",
+                subdomain: "poetry",
+                description: "Poetry and creative expression club celebrating literary arts",
+                logo: "https://www.kiet.edu/uploads/department/student_club/578183856.jpg",
+                contact: "kiet_kavyanjali",
+                members: 75
+            },
+            {
+                name: "KIET Movie Society",
+                domain: "cultural",
+                subdomain: "modelling",
+                description: "Film appreciation, theatre, modelling, and dance performances",
+                logo: "https://www.kiet.edu/uploads/department/student_club/256909466.jpg",
+                members: 95
+            },
+            {
+                name: "Odyssey",
+                domain: "cultural",
+                subdomain: "speaking",
+                description: "Public speaking, debate, and communication excellence club",
+                logo: "https://www.kiet.edu/uploads/department/student_club/516698710.jpg",
+                members: 110
+            },
+            {
+                name: "Uddeshhya",
+                domain: "social",
+                subdomain: null,
+                description: "Social service initiatives for community development and awareness",
+                logo: "https://www.kiet.edu/uploads/department/student_club/938254882.jpg",
+                members: 80
+            },
+            {
+                name: "Ek Prayas",
+                domain: "social",
+                subdomain: null,
+                description: "Volunteer-driven social service for underprivileged communities",
+                logo: "https://www.kiet.edu/uploads/department/student_club/780221923.jpg",
+                members: 65
+            },
+            {
+                name: "Kinesis Technical Society (KTS)",
+                domain: "technical",
+                subdomain: "appdev",
+                description: "App development and UI/UX design for innovative mobile solutions",
+                logo: "https://www.kiet.edu/uploads/department/student_club/435428214.jpg",
+                members: 100
+            },
+            {
+                name: "K3",
+                domain: "technical",
+                subdomain: "dsa",
+                description: "Comprehensive technical club covering all domains of computer science",
+                logo: "data:image/jpeg;base64,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",
+                members: 150
+            },
+            {
+                name: "MLSA",
+                domain: "technical",
+                subdomain: "dsa",
+                description: "Microsoft Learn Student Ambassadors - DSA, OS, and Microsoft technologies",
+                logo: "https://www.kiet.edu/uploads/department/student_club/891828523.png",
+                members: 130
+            },
+            {
+                name: "CP Bytes",
+                domain: "technical",
+                subdomain: "cloud",
+                description: "Cloud computing and competitive programming enthusiasts",
+                members: 90
+            },
+            {
+                name: "TEDx KIET",
+                domain: "entrepreneurship",
+                subdomain: null,
+                description: "Ideas worth spreading - Innovation, entrepreneurship, and thought leadership",
+                logo: "https://www.kiet.edu/uploads/department/student_club/571457974.jpg",
+                members: 140
+            },
+            {
+                name: "Technocrats",
+                domain: "technical",
+                subdomain: "aiml",
+                description: "AI/ML and Android development for cutting-edge tech solutions",
+                logo: "https://www.kiet.edu/uploads/department/student_club/468843929.jpg",
+                members: 115
+            },
+            {
+                name: "The Impeccables",
+                domain: "cultural",
+                subdomain: "photography",
+                description: "Photography club capturing moments and visual storytelling",
+                logo: "https://www.kiet.edu/uploads/department/student_club/727135518.jpg",
+                members: 70
+            },
+            {
+                name: "The Phoenix",
+                domain: "cultural",
+                subdomain: "dancing",
+                description: "Dance club with diverse styles and energetic performances",
+                members: 125
+            },
+            {
+                name: "Pragmatic",
+                domain: "cultural",
+                subdomain: "modelling",
+                description: "Professional modelling and runway training club",
+                logo: "https://www.kiet.edu/uploads/department/student_club/402146895.jpg",
+                members: 60
+            },
+            {
+                name: "SPARK",
+                domain: "cultural",
+                subdomain: "fashion",
+                description: "Fashion design, styling, and trendsetting club",
+                logo: "",
+                members: 80
+            },
+            {
+                name: "Dinobots",
+                domain: "technical",
+                subdomain: "robotics",
+                description: "Advanced robotics, automation, and mechatronics club",
+                logo: "https://www.kiet.edu/uploads/department/student_club/3879615.jpg",
+                members: 75
+            },
+            {
+                name: "Robotics Club",
+                domain: "technical",
+                subdomain: "aiml",
+                description: "Build robots, work with Arduino, and compete in robotics competitions",
+                members: 80
+            },
+            {
+                name: "AI & ML Club",
+                domain: "technical",
+                subdomain: "aiml",
+                description: "Explore artificial intelligence, machine learning, and data science projects",
+                members: 120
+            },
+            
+            {
+                name: "Full Stack Developers",
+                domain: "technical",
+                subdomain: "webdev",
+                description: "Build complete web applications from frontend to backend",
+                members: 85
+            },
+            
+            {
+                name: "UI/UX Design Club",
+                domain: "technical",
+                subdomain: "uiux",
+                description: "Learn user interface design, user experience, and design thinking",
+                members: 65
+            },
+            {
+                name: "Cloud Computing Club",
+                domain: "technical",
+                subdomain: "cloud",
+                description: "Learn AWS, Azure, GCP, and cloud infrastructure technologies",
+                members: 70
+            },
+            {
+                name: "DevOps Engineers",
+                domain: "technical",
+                subdomain: "cloud",
+                description: "Master CI/CD, containerization, Kubernetes, and cloud deployment",
+                logo: "https://www.kiet.edu/uploads/department/student_club/56617124.jpg",
+                members: 55
+            },
+            
+            {
+                name: "Operating Systems Club",
+                domain: "technical",
+                subdomain: "os",
+                description: "Linux, system programming, kernel development, and OS internals",
+                members: 50
+            },
+            
+            {
+                name: "Flutter Community",
+                domain: "technical",
+                subdomain: "flutter",
+                description: "Cross-platform mobile app development with Flutter and Dart",
+                members: 70
+            },
+            {
+                name: "Poetry Club",
+                domain: "cultural",
+                subdomain: "poetry",
+                description: "Express emotions through verses, slam poetry, and creative writing",
+                members: 85
+            },
+            {
+                name: "Poets & Rhymers Society",
+                domain: "cultural",
+                subdomain: "poetry",
+                description: "Open mic poetry sessions, creative expression, and literary events",
+                members: 60
+            },
+            {
+                name: "Creative Writing Club",
+                domain: "cultural",
+                subdomain: "writing",
+                description: "Stories, essays, novels, and creative literary compositions",
+                members: 90
+            },
+            {
+                name: "Literary Society",
+                domain: "cultural",
+                subdomain: "writing",
+                description: "Book discussions, writing workshops, and publishing opportunities",
+                members: 75
+            },
+            {
+                name: "Public Speaking Club",
+                domain: "cultural",
+                subdomain: "speaking",
+                description: "Debate, public speaking, elocution, and communication skills",
+                members: 95
+            },
+            
+            {
+                name: "Singing Club",
+                domain: "cultural",
+                subdomain: "singing",
+                description: "Vocal training, live performances, and musical concerts",
+                members: 110
+            },
+            
+            {
+                name: "Dance Club",
+                domain: "cultural",
+                subdomain: "dancing",
+                description: "Various dance forms, choreography, and stage performances",
+                members: 140
+            },
+            
+            {
+                name: "Music Club",
+                domain: "cultural",
+                subdomain: "instruments",
+                description: "Learn instruments, perform at events, and celebrate music together",
+                members: 110
+            },
+           
+            {
+                name: "IR & PR Club",
+                domain: "cultural",
+                subdomain: "marketing",
+                description: "Event promotion, branding, social media marketing, and campaigns",
+                members: 85
+            },
+           
+            {
+                name: "Fashion & Modelling Club",
+                domain: "cultural",
+                subdomain: "modelling",
+                description: "Ramp walks, fashion shows, styling, and grooming",
+                members: 75
+            },
+            {
+                name: "Drama Club",
+                domain: "cultural",
+                subdomain: "modelling",
+                description: "Theatre, acting, stage plays, and dramatic performances",
+                members: 75
+            },
+            {
+                name: "Photography Club",
+                domain: "cultural",
+                subdomain: "photography",
+                description: "Capture moments, learn photography techniques, and organize exhibitions",
+                members: 65
+            },
+            
+            {
+                name: "Content Writing Club",
+                domain: "cultural",
+                subdomain: "contentwriting",
+                description: "Blogs, articles, copywriting, and digital content creation",
+                members: 80
+            },
+            
+            {
+                name: "Cricket Club",
+                domain: "sports",
+                subdomain: "cricket",
+                description: "Practice cricket, participate in inter-college tournaments",
+                members: 100
+            },
+            {
+                name: "Premier Cricket Team",
+                domain: "sports",
+                subdomain: "cricket",
+                description: "Elite cricket team for competitive matches and championships",
+                members: 45
+            },
+            {
+                name: "Football Club",
+                domain: "sports",
+                subdomain: "football",
+                description: "Football training, matches, and competitive tournaments",
+                members: 90
+            },
+            {
+                name: "Basketball Club",
+                domain: "sports",
+                subdomain: "basketball",
+                description: "Basketball practice, tournaments, and fitness training",
+                members: 70
+            },
+            {
+                name: "Street Basketball",
+                domain: "sports",
+                subdomain: "basketball",
+                description: "Casual basketball games, streetball, and 3v3 tournaments",
+                members: 55
+            },
+            {
+                name: "Badminton Club",
+                domain: "sports",
+                subdomain: "badminton",
+                description: "Badminton coaching, competitions, and regular practice sessions",
+                members: 60
+            },
+            {
+                name: "Shuttle Smashers",
+                domain: "sports",
+                subdomain: "badminton",
+                description: "Competitive badminton team for inter-college championships",
+                members: 35
+            },
+            {
+                name: "Kabaddi Warriors",
+                domain: "sports",
+                subdomain: "kabaddi",
+                description: "Traditional kabaddi training and competitive matches",
+                members: 50
+            },
+            {
+                name: "Pro Kabaddi Club",
+                domain: "sports",
+                subdomain: "kabaddi",
+                description: "Advanced kabaddi techniques and tournament participation",
+                members: 40
+            },
+            {
+                name: "Billiards & Snooker Club",
+                domain: "sports",
+                subdomain: "billiards",
+                description: "Cue sports, billiards, snooker, and pool competitions",
+                members: 30
+            },
+{
+                name: "8-Ball Pool Society",
+                domain: "sports",
+                subdomain: "billiards",
+                description: "Pool tournaments, trick shots, and cue sports mastery",
+                members: 25
+            },
+            {
+                name: "Volleyball Club",
+                domain: "sports",
+                subdomain: "volleyball",
+                description: "Beach volleyball, indoor volleyball, and team competitions",
+                members: 65
+            },
+            {
+                name: "Spike Masters",
+                domain: "sports",
+                subdomain: "volleyball",
+                description: "Competitive volleyball team with advanced training",
+                members: 45
+            },
+            {
+                name: "Shooting Club",
+                domain: "sports",
+                subdomain: "shooting",
+                description: "Air rifle shooting, precision training, and competitions",
+                members: 35
+            },
+            {
+                name: "Bulls Eye Society",
+                domain: "sports",
+                subdomain: "shooting",
+                description: "Target shooting, marksmanship, and shooting sports",
+                members: 28
+            },
+            {
+                name: "Table Tennis Club",
+                domain: "sports",
+                subdomain: "tabletennis",
+                description: "Ping pong training, tournaments, and skill development",
+                members: 55
+            },
+            {
+                name: "TT Champions",
+                domain: "sports",
+                subdomain: "tabletennis",
+                description: "Competitive table tennis team for inter-college matches",
+                members: 40
+            },
+            {
+                name: "NSS (National Service Scheme)",
+                domain: "social",
+                description: "Community service, social awareness campaigns, and volunteer work",
+                members: 200
+            },
+            {
+                name: "Environment Club",
+                domain: "social",
+                description: "Sustainability initiatives, tree plantation, and eco-friendly campaigns",
+                members: 85
+            },
+            {
+                name: "Blood Donation Club",
+                domain: "social",
+                description: "Organize blood donation drives and health awareness programs",
+                members: 50
+            },
+            {
+                name: "E-Cell (Entrepreneurship Cell)",
+                domain: "entrepreneurship",
+                description: "Foster entrepreneurship, startup guidance, and business competitions",
+                members: 130
+            },
+            {
+                name: "Innovation Hub",
+                domain: "entrepreneurship",
+                description: "Ideation, prototyping, and bringing innovative ideas to life",
+                members: 75
+            }
+        ];
+
+        // Events data
+        const eventsData = [
+            {
+                title: "AI/ML Workshop Series",
+                club: "GDG Club",
+                date: "Nov 15, 2025",
+                time: "10:00 AM - 4:00 PM",
+                location: "Seminar Hall A",
+                description: "Hands-on workshop covering neural networks, deep learning, and practical AI applications with industry experts.",
+                registrationLink: "#"
+            },
+            {
+                title: "Web Development Bootcamp",
+                club: "Innogeeks",
+                date: "Nov 18, 2025",
+                time: "2:00 PM - 6:00 PM",
+                location: "Computer Lab 3",
+                description: "Learn modern web technologies including React, Node.js, and full-stack development from scratch.",
+                registrationLink: "#"
+            },
+            {
+                title: "Poetry Open Mic Night",
+                club: "Kvanjali",
+                date: "Nov 20, 2025",
+                time: "6:00 PM - 9:00 PM",
+                location: "Amphitheatre",
+                description: "Share your poetry, spoken word, and creative expressions in a supportive and inspiring environment.",
+                registrationLink: "#"
+            },
+            {
+                title: "Annual Dance Competition",
+                club: "The Phoenix",
+                date: "Nov 22, 2025",
+                time: "4:00 PM - 8:00 PM",
+                location: "Main Auditorium",
+                description: "Showcase your dance skills in various categories including solo, duet, and group performances.",
+                registrationLink: "#"
+            },
+            {
+                title: "Startup Pitch Competition",
+                club: "TEDx KIET",
+                date: "Nov 25, 2025",
+                time: "11:00 AM - 5:00 PM",
+                location: "Innovation Center",
+                description: "Present your startup ideas to investors and mentors. Win funding and mentorship opportunities.",
+                registrationLink: "#"
+            },
+            {
+                title: "Robotics Hackathon",
+                club: "Dinobots",
+                date: "Nov 28, 2025",
+                time: "9:00 AM - 6:00 PM",
+                location: "Robotics Lab",
+                description: "24-hour hackathon to build innovative robots and automation solutions. Teams of 3-4 members.",
+                registrationLink: "#"
+            },
+            {
+                title: "Photography Exhibition",
+                club: "The Impeccables",
+                date: "Dec 1, 2025",
+                time: "10:00 AM - 6:00 PM",
+                location: "Art Gallery",
+                description: "Annual photography exhibition showcasing student work across various themes and techniques.",
+                registrationLink: "#"
+            },
+            {
+                title: "Fashion Show 2025",
+                club: "SPARK",
+                date: "Dec 5, 2025",
+                time: "7:00 PM - 10:00 PM",
+                location: "Main Auditorium",
+                description: "Grand fashion show featuring student designers, models, and the latest trends in fashion.",
+                registrationLink: "#"
+            }
+        ];
+
+        // Initialize - show all clubs on page load
+        let currentDomain = 'all';
+        let currentSubdomain = null;
+        let searchTerm = '';
+        displayClubs('all', null);
+        displayEvents();
+
+        function filterClubs(domain) {
+            // Update active button
+            const buttons = document.querySelectorAll('.domain-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-domain') === domain) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Show/hide subdomain bars for technical, cultural, and sports domains
+            const subdomainBar = document.getElementById('subdomainBar');
+            const culturalSubdomainBar = document.getElementById('culturalSubdomainBar');
+            const sportsSubdomainBar = document.getElementById('sportsSubdomainBar');
+            
+            if (domain === 'technical') {
+                subdomainBar.classList.add('show');
+                culturalSubdomainBar.classList.remove('show');
+                sportsSubdomainBar.classList.remove('show');
+                // Reset subdomain buttons
+                const subdomainButtons = document.querySelectorAll('.subdomain-btn');
+                subdomainButtons.forEach(btn => btn.classList.remove('active'));
+            } else if (domain === 'cultural') {
+                subdomainBar.classList.remove('show');
+                culturalSubdomainBar.classList.add('show');
+                sportsSubdomainBar.classList.remove('show');
+                // Reset subdomain buttons
+                const subdomainButtons = document.querySelectorAll('.subdomain-btn');
+                subdomainButtons.forEach(btn => btn.classList.remove('active'));
+            } else if (domain === 'sports') {
+                subdomainBar.classList.remove('show');
+                culturalSubdomainBar.classList.remove('show');
+                sportsSubdomainBar.classList.add('show');
+                // Reset subdomain buttons
+                const subdomainButtons = document.querySelectorAll('.subdomain-btn');
+                subdomainButtons.forEach(btn => btn.classList.remove('active'));
+            } else {
+                subdomainBar.classList.remove('show');
+                culturalSubdomainBar.classList.remove('show');
+                sportsSubdomainBar.classList.remove('show');
+            }
+
+            // Update current domain and display clubs
+            currentDomain = domain;
+            currentSubdomain = null;
+            displayClubs(domain, null);
+        }
+
+        function filterBySubdomain(subdomain) {
+            // Update active subdomain button
+            const subdomainButtons = document.querySelectorAll('.subdomain-btn');
+            subdomainButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-subdomain') === subdomain) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update current subdomain and display clubs
+            currentSubdomain = subdomain;
+            displayClubs(currentDomain, subdomain);
+        }
+
+        function displayClubs(domain, subdomain) {
+            const container = document.getElementById('clubsContainer');
+            
+            // Filter clubs based on domain, subdomain, and search term
+            let filteredClubs;
+            if (domain === 'all') {
+                filteredClubs = clubsData;
+            } else if (subdomain) {
+                filteredClubs = clubsData.filter(club => 
+                    club.domain === currentDomain && club.subdomain === subdomain
+                );
+            } else {
+                filteredClubs = clubsData.filter(club => club.domain === domain);
+            }
+
+            // Apply search filter if search term exists
+            if (searchTerm) {
+                filteredClubs = filteredClubs.filter(club => 
+                    club.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    club.description.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+
+            // Sort clubs by rating (highest to lowest)
+            filteredClubs.sort((a, b) => {
+                const ratingA = a.rating || 4.5;
+                const ratingB = b.rating || 4.5;
+                return ratingB - ratingA;
+            });
+
+            // Clear container
+            container.innerHTML = '';
+
+            // Add search results info if searching
+            if (searchTerm) {
+                const resultsInfo = document.createElement('div');
+                resultsInfo.className = 'search-results-info';
+                resultsInfo.innerHTML = `Found ${filteredClubs.length} clubs matching "${searchTerm}"`;
+                container.appendChild(resultsInfo);
+            }
+
+            // Display clubs or empty state
+            if (filteredClubs.length === 0) {
+                const emptyMessage = searchTerm ? 
+                    `No clubs found matching "${searchTerm}"` : 
+                    'No clubs found in this domain';
+                container.innerHTML += `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <p>${emptyMessage}</p>
+                    </div>
+                `;
+            } else {
+                filteredClubs.forEach((club, index) => {
+                    const clubCard = document.createElement('div');
+                    clubCard.className = 'club-card';
+                    clubCard.style.animationDelay = `${index * 0.1}s`;
+                    
+                    clubCard.innerHTML = `
+                        <h3 class="club-name">${club.name}</h3>
+                        <p class="club-description">${club.description}</p>
+                        <div class="club-meta">
+                            <span>👥 ${club.members} members</span>
+                        </div>
+                        <div class="club-tag">${formatDomain(club.domain)}</div>
+                        <div class="club-rating-badge">
+                            <span class="club-rating-stars">${generateStarRating(club.rating || 4.5)}</span>
+                            <span>${(club.rating || 4.5).toFixed(1)}</span>
+                        </div>
+                    `;
+                    
+                    clubCard.addEventListener('click', () => showClubDetails(club));
+                    
+                    container.appendChild(clubCard);
+                });
+            }
+        }
+
+        function formatDomain(domain) {
+            const domainNames = {
+                'technical': 'Technical',
+                'cultural': 'Cultural',
+                'sports': 'Sports',
+                'social': 'Social Service',
+                'entrepreneurship': 'Entrepreneurship'
+            };
+            return domainNames[domain] || domain;
+        }
+
+        function searchClubs() {
+            const input = document.getElementById('searchInput');
+            const clearButton = document.getElementById('clearSearch');
+            searchTerm = input.value.trim();
+            
+            // Show/hide clear button
+            if (searchTerm) {
+                clearButton.style.display = 'flex';
+            } else {
+                clearButton.style.display = 'none';
+            }
+            
+            // If searching, show all domains and reset filters
+            if (searchTerm) {
+                // Reset domain buttons
+                const buttons = document.querySelectorAll('.domain-btn');
+                buttons.forEach(btn => btn.classList.remove('active'));
+                
+                // Hide subdomain bars
+                document.getElementById('subdomainBar').classList.remove('show');
+                document.getElementById('culturalSubdomainBar').classList.remove('show');
+                document.getElementById('sportsSubdomainBar').classList.remove('show');
+                
+                // Search across all clubs
+                displayClubs('all', null);
+            } else {
+                // If no search term, return to current filter
+                displayClubs(currentDomain, currentSubdomain);
+            }
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            const clearButton = document.getElementById('clearSearch');
+            
+            input.value = '';
+            searchTerm = '';
+            clearButton.style.display = 'none';
+            
+            // Return to current domain filter
+            displayClubs(currentDomain, currentSubdomain);
+            
+            // Restore active domain button
+            const buttons = document.querySelectorAll('.domain-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-domain') === currentDomain) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function showClubDetails(club) {
+            const modal = document.getElementById('clubModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Generate activities list
+            const activitiesList = club.activities ? 
+                club.activities.map(activity => `<li>${activity}</li>`).join('') : 
+                '<li>General club activities</li><li>Regular meetings</li><li>Skill development sessions</li>';
+                
+            // Generate achievements list
+            const achievementsList = club.achievements ? 
+                club.achievements.map(achievement => `<li>${achievement}</li>`).join('') : 
+                '<li>Active participation in college events</li><li>Regular community engagement</li>';
+            
+            modalContent.innerHTML = `
+                <span>
+                <h2 class="modal-title">${club.name}</h2>
+                ${club.logo ? `<div style="text-align: center; margin-bottom: var(--space-20);"><img src="${club.logo}" alt="${club.name} logo" style="max-width: 200px; height: auto; border-radius: var(--radius-lg); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);"></div>` : ''}
+                </span>
+                <div class="modal-tags">
+                    <span class="modal-tag">${formatDomain(club.domain)}</span>
+                    ${club.subdomain ? `<span class="modal-tag">${formatSubdomain(club.subdomain)}</span>` : ''}
+                </div>
+                
+                <div class="modal-section">
+                    <h4>📝 About</h4>
+                    <p>${club.description}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>⭐ Overall Rating</h4>
+                    <div class="club-rating-display">
+                        <div class="rating-stars-large">${generateStarRating(club.rating || 4.5)}</div>
+                        <div class="rating-score">${(club.rating || 4.5).toFixed(1)} / 5.0</div>
+                        <div class="rating-count">(${club.totalRatings || Math.floor(club.members * 0.6)} ratings)</div>
+                    </div>
+                </div>
+                
+                <div class="modal-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">${club.members}</span>
+                        <div class="stat-label">Members</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">${club.founded || '2020'}</span>
+                        <div class="stat-label">Founded</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">${club.meetings || 'Monthly'}</span>
+                        <div class="stat-label">Meetings</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>🎯 Activities</h4>
+                    <ul style="margin-left: 20px; color: var(--color-text-secondary);">
+                        ${activitiesList}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>🏆 Achievements</h4>
+                    <ul style="margin-left: 20px; color: var(--color-text-secondary);">
+                        ${achievementsList}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>📅 Registration</h4>
+                    <p><strong>Opens:</strong> ${club.registrationStart || 'To be announced'}<br>
+                    <strong>Closes:</strong> ${club.registrationEnd || 'To be announced'}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>📧 Contact</h4>
+                    <a href="https://www.instagram.com/${club.contact}">${club.contact}</a>
+                    <p>${club.contact || 'Contact through college administration'}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>📋 Requirements</h4>
+                    <p>${club.requirements || 'Open to all students with interest in ' + formatDomain(club.domain).toLowerCase() + ' activities'}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>⭐ Student Reviews</h4>
+                    <div class="reviews-container">
+                        ${generateReviews(club)}
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>✍️ Write a Review</h4>
+                    <div class="write-review-form">
+                        <input type="text" id="reviewerName" class="review-input" placeholder="Your Name" />
+                        <input type="text" id="reviewerYear" class="review-input" placeholder="Your Year (e.g., 2nd Year CSE)" />
+                        <div class="rating-selector">
+                            <label style="font-weight: 600; margin-right: 10px; color: var(--color-text);">Rating:</label>
+                            <span class="star-rating" onclick="setRating(1)">⭐</span>
+                            <span class="star-rating" onclick="setRating(2)">⭐</span>
+                            <span class="star-rating" onclick="setRating(3)">⭐</span>
+                            <span class="star-rating" onclick="setRating(4)">⭐</span>
+                            <span class="star-rating" onclick="setRating(5)">⭐</span>
+                        </div>
+                        <textarea id="reviewComment" class="review-textarea" placeholder="Share your experience with this club..." rows="4"></textarea>
+                        <button class="submit-review-btn" onclick="submitReview('${club.name}')">Submit Review</button>
+                    </div>
+                </div>
+                
+                <button class="join-button" onclick="joinClub('${club.name}')">Join ${club.name}</button>
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeClubModal() {
+            const modal = document.getElementById('clubModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function joinClub(clubName) {
+            const club = clubsData.find(c => c.name === clubName);
+            if (club && (club.president || club.coordinator || club.instagram)) {
+                const contactInfo = `
+🎉 Welcome to ${clubName}! 🎉
+
+📋 Contact Information:
+
+👨‍💼 President: ${club.president ? club.president.name : 'To be announced'}
+${club.president ? '📱 Phone: ' + club.president.phone : ''}
+${club.president ? '📧 Email: ' + club.president.email : ''}
+
+👩‍🏫 Coordinator: ${club.coordinator ? club.coordinator.name : 'To be announced'}
+${club.coordinator ? '📱 Phone: ' + club.coordinator.phone : ''}
+${club.coordinator ? '📧 Email: ' + club.coordinator.email : ''}
+
+📸 Instagram: ${club.instagram || 'Coming soon'}
+
+Please reach out to enroll and get more details!
+                `.trim();
+                
+                alert(contactInfo);
+            } else {
+                alert(`Great! You've shown interest in joining ${clubName}.\n\nContact details will be shared during the registration period.\nPlease check the announcements section for registration dates.`);
+            }
+            closeClubModal();
+        }
+
+        function generateReviews(club) {
+            if (club.reviews && club.reviews.length > 0) {
+                return club.reviews.map(review => `
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-student">${review.student}</div>
+                            <div class="review-rating">${'⭐'.repeat(review.rating)}</div>
+                        </div>
+                        <div class="review-year">${review.year}</div>
+                        <div class="review-comment">"${review.comment}"</div>
+                    </div>
+                `).join('');
+            } else {
+                // Generate sample reviews for clubs without specific reviews
+                const sampleReviews = [
+                    { student: "Anonymous Student", rating: 4, comment: "Great club with amazing opportunities to learn and grow.", year: "3rd Year" },
+                    { student: "Club Member", rating: 5, comment: "Highly recommend joining! Very active and supportive community.", year: "2nd Year" }
+                ];
+                return sampleReviews.map(review => `
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-student">${review.student}</div>
+                            <div class="review-rating">${'⭐'.repeat(review.rating)}</div>
+                        </div>
+                        <div class="review-year">${review.year}</div>
+                        <div class="review-comment">"${review.comment}"</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function generateStarRating(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            
+            let stars = '★'.repeat(fullStars);
+            if (hasHalfStar) stars += '⯨';
+            stars += '☆'.repeat(emptyStars);
+            
+            return stars;
+        }
+
+        function formatSubdomain(subdomain) {
+            const subdomainNames = {
+                'dsa': 'DSA',
+                'cp': 'Competitive Programming',
+                'webdev': 'Web Development',
+                'appdev': 'App Development',
+                'uiux': 'UI/UX Design',
+                'aiml': 'AI/ML',
+                'cloud': 'Cloud Computing',
+                'deeplearning': 'Deep Learning',
+                'os': 'Operating Systems',
+                'android': 'Android Development',
+                'flutter': 'Flutter Development',
+                'robotics': 'Robotics',
+                'cybersecurity': 'Cyber Security',
+                'poetry': 'Poetry',
+                'writing': 'Writing',
+                'speaking': 'Public Speaking',
+                'singing': 'Singing',
+                'dancing': 'Dancing',
+                'instruments': 'Musical Instruments',
+                'marketing': 'Marketing',
+                'modelling': 'Modelling',
+                'photography': 'Photography',
+                'contentwriting': 'Content Writing',
+                'fashion': 'Fashion',
+                'cricket': 'Cricket',
+                'badminton': 'Badminton',
+                'kabaddi': 'Kabaddi',
+                'billiards': 'Billiards',
+                'volleyball': 'Volleyball',
+                'basketball': 'Basketball',
+                'shooting': 'Shooting',
+                'tabletennis': 'Table Tennis'
+            };
+            return subdomainNames[subdomain] || subdomain;
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('clubModal').addEventListener('click', (e) => {
+            if (e.target.id === 'clubModal') {
+                closeClubModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeClubModal();
+            }
+        });
+
+        // Draggable announcement functionality
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+
+        const announcementBox = document.getElementById('announcementBox');
+
+        announcementBox.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            const rect = announcementBox.getBoundingClientRect();
+            dragOffset.x = e.clientX - rect.left;
+            dragOffset.y = e.clientY - rect.top;
+            announcementBox.style.zIndex = '1000';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const x = e.clientX - dragOffset.x;
+                const y = e.clientY - dragOffset.y;
+                
+                // Keep within viewport bounds
+                const maxX = window.innerWidth - announcementBox.offsetWidth;
+                const maxY = window.innerHeight - announcementBox.offsetHeight;
+                
+                const boundedX = Math.max(0, Math.min(x, maxX));
+                const boundedY = Math.max(0, Math.min(y, maxY));
+                
+                announcementBox.style.left = boundedX + 'px';
+                announcementBox.style.top = boundedY + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                announcementBox.style.zIndex = '999';
+            }
+        });
+
+        function closeAnnouncement() {
+            const announcementBox = document.getElementById('announcementBox');
+            announcementBox.style.display = 'none';
+        }
+
+        function displayEvents() {
+            const container = document.getElementById('eventsContainer');
+            container.innerHTML = '';
+
+            eventsData.forEach((event, index) => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+                eventCard.style.animationDelay = `${index * 0.1}s`;
+                eventCard.style.opacity = '0';
+                eventCard.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+
+                eventCard.innerHTML = `
+                    <span class="event-date-badge">📅 ${event.date}</span>
+                    <h3 class="event-title">${event.title}</h3>
+                    <div class="event-club">🎯 Organized by ${event.club}</div>
+                    <p class="event-description">${event.description}</p>
+                    <div class="event-details">
+                        <div class="event-detail-item">
+                            <span>🕒</span>
+                            <span>${event.time}</span>
+                        </div>
+                        <div class="event-detail-item">
+                            <span>📍</span>
+                            <span>${event.location}</span>
+                        </div>
+                    </div>
+                    <button class="event-register-btn" onclick="registerForEvent('${event.title}', '${event.club}')">
+                        Register Now
+                    </button>
+                `;
+
+                container.appendChild(eventCard);
+            });
+        }
+
+        function registerForEvent(eventTitle, clubName) {
+            alert(`Registration for "${eventTitle}" by ${clubName}\n\nYou will be redirected to the registration form. Please contact ${clubName} for more details.`);
+        }
+
+        function scrollToEvents() {
+            const eventsSection = document.querySelector('.events-section-wrapper');
+            eventsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function scrollToAnnouncements() {
+            const announcementsSection = document.getElementById('announcementsSection');
+            if (announcementsSection) {
+                announcementsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const currentScheme = html.getAttribute('data-color-scheme');
+            
+            if (currentScheme === 'dark') {
+                html.setAttribute('data-color-scheme', 'light');
+                themeIcon.textContent = '🌙';
+                try {
+                    localStorage.setItem('theme', 'light');
+                } catch (e) {
+                    console.warn('Could not save theme preference');
+                }
+            }
+            else {
+                html.setAttribute('data-color-scheme', 'dark');
+                themeIcon.textContent = '☀️';
+                try {
+                    localStorage.setItem('theme', 'dark');
+                } catch (e) {
+                    console.warn('Could not save theme preference');
+                }
+            }
+        }
+
+        function showLogin() {
+            const modal = document.getElementById('clubModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2 class="modal-title">🔐 Student Login</h2>
+                
+                <div class="modal-section">
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--space-24); font-weight: 500;">
+                        Login to access your personalized dashboard with club memberships, event registrations, and more.
+                    </p>
+                    
+                    <div class="write-review-form">
+                    <form method="post" action="dashboard1.html">
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                📧 University Email
+                            </label>
+                            <input type="email" id="loginEmail" class="review-input" placeholder="your.email@kiet.edu" />
+                        </div>
+                        
+                        <div style="margin-bottom: var(--space-24);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                🎓 University Roll Number
+                            </label>
+                            <input type="text" id="loginRollNo" class="review-input" placeholder="Enter your roll number" />
+                        </div>
+
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                👤 Password
+                            </label>
+                            <input type="password" id="password" class="review-input" placeholder="Enter your Password" />
+                        </div>
+                        
+                        <button class="submit-review-btn" onclick="processLogin()">
+                            Login to Dashboard
+                        </button>
+                        
+                        <p style="text-align: center; margin-top: var(--space-16); font-size: 13px; color: var(--color-text-secondary); font-weight: 500;">
+                            Don't have an account? <a href="#" style="color: var(--color-primary); font-weight: 700;" onclick="showRegister()">Register here</a>
+                        </p>
+                        </form>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+    function showRegister() {
+            const modal = document.getElementById('clubModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2 class="modal-title">🔐 Student Register</h2>
+                
+                <div class="modal-section">
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--space-24); font-weight: 500;">
+                        Register to access your personalized dashboard with club memberships, event registrations, and more.
+                    </p>
+                    
+                    <div class="write-review-form">
+                        <form method="post" action=".dashboard1.html">
+                            <label>Your Name</label>
+                            <input type="text" name="name" value="{{ request.form.name or '' }}" required />
+                            <label>University Email</label>
+                            <input type="email" name="email" value="{{ request.form.email or '' }}" required />
+                            <label>Password</label>
+                            <input type="password" name="password" required />
+                            <label>Confirm Password</label>
+                            <input type="password" name="password2" required />
+                            <button type="submit">Register</button>
+                        </form>
+                        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
+                    
+                    <form method="post">
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                Your Name
+                            </label>
+                            <input type="name" id="loginName" class="review-input" placeholder="Enter your Name"/>
+                        </div>
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                📧 University Email
+                            </label>
+                            <input type="email" id="loginEmail" class="review-input" placeholder="your.email@kiet.edu" />
+                        </div>
+                        
+                        <div style="margin-bottom: var(--space-24);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                🎓 University Roll Number
+                            </label>
+                            <input type="text" id="loginRollNo" class="review-input" placeholder="Enter your roll number" />
+                        </div>
+
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                👤 Password
+                            </label>
+                            <input type="password" id="password" class="review-input" placeholder="Enter your Password" />
+                        </div>
+
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                👤 Confirm Password
+                            </label>
+                            <input type="password" id="password2" class="review-input" placeholder="Re-Enter your Password" />
+                        </div>                        
+                        
+                        <button class="submit-review-btn" onclick="processRegister()">
+                            Register
+                        </button>
+                        
+                        <p style="text-align: center; margin-top: var(--space-16); font-size: 13px; color: var(--color-text-secondary); font-weight: 500;">
+                            Already have an account? <a href="" style="color: var(--color-primary); font-weight: 700;" onclick="showLogin()">Login here</a>
+                        </p>
+                        </form>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function processLogin() {
+            const name = document.getElementById('loginName').value.trim();
+            const email = document.getElementById('loginEmail').value.trim();
+            const rollNo = document.getElementById('loginRollNo').value.trim();
+
+            if (!name) {
+                alert('❌ Please enter your full name');
+                return;
+            }
+
+            if (!email) {
+                alert('❌ Please enter your university email');
+                return;
+            }
+
+            if (!email.endsWith('@kiet.edu')) {
+                alert('❌ Please use your university email (@kiet.edu)');
+                return;
+            }
+
+            if (!rollNo) {
+                alert('❌ Please enter your roll number');
+                return;
+            }
+
+            alert(`✅ Login Successful!\n\nWelcome, ${name}!\n\nEmail: ${email}\nRoll No: ${rollNo}\n\nRedirecting to your personalized dashboard...\n\n📊 Dashboard Features:\n• Your club memberships\n• Registered events\n• Review history\n• Saved clubs\n• Notifications`);
+            
+            closeClubModal();
+        }
+
+        function processRegister() {
+            const name = document.getElementById('loginName').value.trim();
+            const email = document.getElementById('loginEmail').value.trim();
+            const rollNo = document.getElementById('loginRollNo').value.trim();
+            const pwd1= document.getElementById('password').value.trim();
+            const pwd2= document.getElementById('password1').value.trim();
+            if (!name) {
+                alert('❌ Please enter your full name');
+                return;
+            }
+
+            if (!email) {
+                alert('❌ Please enter your university email');
+                return;
+            }
+
+            if (!email.endsWith('@kiet.edu')) {
+                alert('❌ Please use your university email (@kiet.edu)');
+                return;
+            }
+
+            if (!rollNo) {
+                alert('❌ Please enter your roll number');
+                return;
+            }
+            if (pwd1!=pwd2){
+                alert('Password does not match');
+                return;
+            }
+
+            closeClubModal()
+        }
+
+        function showAboutUs() {
+            const modal = document.getElementById('clubModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2 class="modal-title">ℹ️ About Campus Clubs Portal</h2>
+                
+                <div class="modal-section">
+                    <p style="color: var(--color-text); margin-bottom: var(--space-24); font-weight: 500; font-size: 15px;">
+                        Welcome to the official KIET Campus Clubs Portal!
+                    </p>
+                    
+                    <h4>🎯 Our Mission</h4>
+                    <p style="font-weight: 500;">Connect students with clubs that match their interests and help them grow personally and professionally.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>✨ Features</h4>
+                    <ul style="margin-left: 20px; color: var(--color-text); font-weight: 500;">
+                        <li>50+ Active Clubs</li>
+                        <li>Multiple Domains</li>
+                        <li>Event Calendar</li>
+                        <li>Student Reviews</li>
+                        <li>Easy Registration</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>👥 Development Team</h4>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-12);">
+                        <div style="padding: var(--space-16); background: var(--color-secondary); border-radius: var(--radius-base); border: 1px solid var(--color-border);">
+                            <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 16px;">Ujjwal Mishra</div>
+                            <a href="mailto:ujjwal.25002342@kiet.edu" style="color: var(--color-primary); font-weight: 600; font-size: 14px;">ujjwal.25002342@kiet.edu</a>
+                        </div>
+                        <div style="padding: var(--space-16); background: var(--color-secondary); border-radius: var(--radius-base); border: 1px solid var(--color-border);">
+                            <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 16px;">Anurag Yadav</div>
+                            <a href="mailto:anurag.25002080@kiet.edu" style="color: var(--color-primary); font-weight: 600; font-size: 14px;">anurag.25002080@kiet.edu</a>
+                        </div>
+                        <div style="padding: var(--space-16); background: var(--color-secondary); border-radius: var(--radius-base); border: 1px solid var(--color-border);">
+                            <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 16px;">Aditya Agarwal</div>
+                            <a href="mailto:aditya.25004025@kiet.edu" style="color: var(--color-primary); font-weight: 600; font-size: 14px;">aditya.25004025@kiet.edu</a>
+                        </div>
+                        <div style="padding: var(--space-16); background: var(--color-secondary); border-radius: var(--radius-base); border: 1px solid var(--color-border);">
+                            <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 16px;">Shobhit Singh</div>
+                            <a href="mailto:shobhit.25002308@kiet.edu" style="color: var(--color-primary); font-weight: 600; font-size: 14px;">shobhit.25002308@kiet.edu</a>
+                        </div>
+                        <div style="padding: var(--space-16); background: var(--color-secondary); border-radius: var(--radius-base); border: 1px solid var(--color-border);">
+                            <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 16px;">Utkarsh Shahi</div>
+                            <a href="mailto:utkarsh.25001282@kiet.edu" style="color: var(--color-primary); font-weight: 600; font-size: 14px;">utkarsh.25001282@kiet.edu</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>📧 Contact</h4>
+                    <p style="font-weight: 500;"><a href="mailto:clubs@kiet.edu" style="color: var(--color-primary); font-weight: 700;">clubs@kiet.edu</a></p>
+                    <p style="font-weight: 500; margin-top: var(--space-12);">📱 Follow us on social media for updates!</p>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showQueries() {
+            const modal = document.getElementById('clubModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <h2 class="modal-title">❓ Have a Question?</h2>
+                
+                <div class="modal-section">
+                    <p style="color: var(--color-text); margin-bottom: var(--space-24); font-weight: 500; font-size: 15px;">
+                        We're here to help! Submit your query and our team will get back to you within 24 hours.
+                    </p>
+                    
+                    <div class="write-review-form">
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                👤 Your Name
+                            </label>
+                            <input type="text" id="queryName" class="review-input" placeholder="Enter your full name" />
+                        </div>
+                        
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                📧 Your Email
+                            </label>
+                            <input type="email" id="queryEmail" class="review-input" placeholder="your.email@kiet.edu" />
+                        </div>
+                        
+                        <div style="margin-bottom: var(--space-16);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                📋 Query Category
+                            </label>
+                            <select id="queryCategory" class="review-input" style="cursor: pointer;">
+                                <option value="">Select a category</option>
+                                <option value="clubs">Club Information</option>
+                                <option value="events">Events & Registration</option>
+                                <option value="membership">Membership Queries</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-bottom: var(--space-24);">
+                            <label style="display: block; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 15px;">
+                                ✍️ Your Query
+                            </label>
+                            <textarea id="queryText" class="review-textarea" placeholder="Describe your question or concern in detail..." rows="6"></textarea>
+                        </div>
+                        
+                        <button class="submit-review-btn" onclick="submitQuery()">
+                            Submit Query
+                        </button>
+                        
+                        <div style="margin-top: var(--space-20); padding: var(--space-16); background: var(--color-secondary); border-radius: var(--radius-base); border: 1px solid var(--color-border);">
+                            <h4 style="font-size: 14px; font-weight: 700; color: var(--color-text); margin-bottom: var(--space-12);">📞 For Urgent Queries</h4>
+                            <p style="font-size: 13px; color: var(--color-text); font-weight: 500; margin-bottom: var(--space-8);">
+                                📧 Email: support@kiet.edu
+                            </p>
+                            <p style="font-size: 13px; color: var(--color-text); font-weight: 500;">
+                                📱 Phone: +91 12345 67890
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function submitQuery() {
+            const name = document.getElementById('queryName').value.trim();
+            const email = document.getElementById('queryEmail').value.trim();
+            const category = document.getElementById('queryCategory').value;
+            const queryText = document.getElementById('queryText').value.trim();
+
+            if (!name) {
+                alert('❌ Please enter your name');
+                return;
+            }
+
+            if (!email) {
+                alert('❌ Please enter your email address');
+                return;
+            }
+
+            if (!category) {
+                alert('❌ Please select a query category');
+                return;
+            }
+
+            if (!queryText) {
+                alert('❌ Please describe your query');
+                return;
+            }
+
+            alert(`✅ Query Submitted Successfully!\n\nThank you, ${name}!\n\nYour query has been received:\n\nCategory: ${getCategoryName(category)}\nQuery: "${queryText}"\n\nOur team will respond to your email (${email}) within 24 hours.\n\nQuery ID: #${Math.floor(Math.random() * 100000)}`);
+            
+            closeClubModal();
+        }
+
+        function getCategoryName(category) {
+            const categories = {
+                'clubs': 'Club Information',
+                'events': 'Events & Registration',
+                'membership': 'Membership Queries',
+                'technical': 'Technical Support',
+                'other': 'Other'
+            };
+            return categories[category] || category;
+        }
+
+        function showEventCalendar() {
+            const modal = document.getElementById('clubModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Create calendar view
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            
+            // Get events grouped by date
+            const eventsByDate = {};
+            eventsData.forEach(event => {
+                const eventDate = new Date(event.date);
+                const dateKey = eventDate.toISOString().split('T')[0];
+                if (!eventsByDate[dateKey]) {
+                    eventsByDate[dateKey] = [];
+                }
+                eventsByDate[dateKey].push(event);
+            });
+            
+            modalContent.innerHTML = `
+                <h2 class="modal-title">📅 Event Calendar</h2>
+                
+                <div class="modal-section">
+                    <h4 style="text-align: center; font-size: 20px; margin-bottom: var(--space-24);">
+                        ${getMonthName(currentMonth)} ${currentYear}
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-8); margin-bottom: var(--space-24);">
+                        <div style="text-align: center; font-weight: 700; padding: var(--space-8); color: var(--color-text); font-size: 13px;">Sun</div>
+                        <div style="text-align: center; font-weight: 700; padding: var(--space-8); color: var(--color-text); font-size: 13px;">Mon</div>
+                        <div style="text-align: center; font-weight: 700; padding: var(--space-8); color: var(--color-text); font-size: 13px;">Tue</div>
+                        <div style="text-align: center; font-weight: 700; padding: var(--space-8); color: var(--color-text); font-size: 13px;">Wed</div>
+                        <div style="text-align: center; font-weight: 700; padding: var(--space-8); color: var(--color-text); font-size: 13px;">Thu</div>
+                        <div style="text-align: center; font-weight: 700; padding: var(--space-8); color: var(--color-text); font-size: 13px;">Fri</div>
+                        <div style="text-align: center; font-weight: 700; padding: var(--space-8); color: var(--color-text); font-size: 13px;">Sat</div>
+                        ${generateCalendarDays(currentMonth, currentYear, eventsByDate)}
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>📋 Upcoming Events</h4>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-12); max-height: 300px; overflow-y: auto;">
+                        ${generateEventsList()}
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function getMonthName(month) {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+            return months[month];
+        }
+
+        function generateCalendarDays(month, year, eventsByDate) {
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            
+            let html = '';
+            
+            // Empty cells before first day
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div style="padding: var(--space-12);"></div>';
+            }
+            
+            // Days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const dateKey = date.toISOString().split('T')[0];
+                const hasEvent = eventsByDate[dateKey];
+                const isToday = date.toDateString() === today.toDateString();
+                
+                const bgColor = isToday ? 'var(--color-primary)' : (hasEvent ? 'rgba(var(--color-teal-500-rgb), 0.2)' : 'var(--color-secondary)');
+                const textColor = isToday ? 'var(--color-cream-50)' : 'var(--color-text)';
+                const borderColor = hasEvent ? 'var(--color-primary)' : 'var(--color-border)';
+                
+                html += `
+                    <div style="
+                        text-align: center; 
+                        padding: var(--space-12); 
+                        background: ${bgColor}; 
+                        border: 2px solid ${borderColor};
+                        border-radius: var(--radius-base);
+                        font-weight: ${isToday || hasEvent ? '700' : '500'};
+                        color: ${textColor};
+                        position: relative;
+                        cursor: ${hasEvent ? 'pointer' : 'default'};
+                        transition: all 0.2s ease;
+                        font-size: 14px;
+                    " ${hasEvent ? `onclick="showDayEvents('${dateKey}')"` : ''} 
+                    ${hasEvent ? `onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"` : ''}>
+                        ${day}
+                        ${hasEvent ? '<div style="position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background: var(--color-primary); border-radius: 50%;"></div>' : ''}
+                    </div>
+                `;
+            }
+            
+            return html;
+        }
+
+        function generateEventsList() {
+            return eventsData.map(event => `
+                <div style="
+                    padding: var(--space-16); 
+                    background: var(--color-secondary); 
+                    border-radius: var(--radius-base); 
+                    border: 1px solid var(--color-border);
+                    transition: all 0.2s ease;
+                    cursor: pointer;
+                " onmouseover="this.style.borderColor='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'" onclick="showEventDetails('${event.title}')">
+                    <div style="font-weight: 700; color: var(--color-text); margin-bottom: var(--space-8); font-size: 16px;">${event.title}</div>
+                    <div style="font-size: 13px; color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-4);">📅 ${event.date} at ${event.time}</div>
+                    <div style="font-size: 13px; color: var(--color-text-secondary); font-weight: 500;">🎯 ${event.club}</div>
+                </div>
+            `).join('');
+        }
+
+        function showDayEvents(dateKey) {
+            const date = new Date(dateKey);
+            const events = eventsData.filter(event => {
+                const eventDate = new Date(event.date);
+                return eventDate.toISOString().split('T')[0] === dateKey;
+            });
+            
+            if (events.length > 0) {
+                let eventsList = events.map(event => 
+                    `📌 ${event.title}\n   by ${event.club}\n   ${event.time} at ${event.location}`
+                ).join('\n\n');
+                
+                alert(`Events on ${date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}:\n\n${eventsList}`);
+            }
+        }
+
+        function showEventDetails(eventTitle) {
+            const event = eventsData.find(e => e.title === eventTitle);
+            if (event) {
+                alert(`📅 ${event.title}\n\n🎯 Organized by: ${event.club}\n📆 Date: ${event.date}\n🕒 Time: ${event.time}\n📍 Location: ${event.location}\n\n${event.description}\n\nClick "Register Now" from the Events section to register!`);
+            }
+        }
+
+        // Initialize theme on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            // Check for saved theme preference, otherwise default to light
+            let savedTheme = null;
+            try {
+                savedTheme = localStorage.getItem('theme');
+            } catch (e) {
+                // LocalStorage might not be available
+                console.warn('localStorage not available');
+            }
+            
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-color-scheme', 'dark');
+                themeIcon.textContent = '☀️';
+            } else {
+                // Default to light theme
+                html.setAttribute('data-color-scheme', 'light');
+                themeIcon.textContent = '🌙';
+            }
+        });
+
+        // Review rating system
+        let selectedRating = 0;
+
+        function setRating(rating) {
+            selectedRating = rating;
+            const stars = document.querySelectorAll('.star-rating');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+
+        function submitReview(clubName) {
+            const name = document.getElementById('reviewerName').value.trim();
+            const year = document.getElementById('reviewerYear').value.trim();
+            const comment = document.getElementById('reviewComment').value.trim();
+
+            if (!name) {
+                alert('Please enter your name');
+                return;
+            }
+
+            if (!year) {
+                alert('Please enter your year');
+                return;
+            }
+
+            if (selectedRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            if (!comment) {
+                alert('Please write a review comment');
+                return;
+            }
+
+            // Find the club and add the review
+            const club = clubsData.find(c => c.name === clubName);
+            if (club) {
+                if (!club.reviews) {
+                    club.reviews = [];
+                }
+                
+                club.reviews.unshift({
+                    student: name,
+                    rating: selectedRating,
+                    comment: comment,
+                    year: year
+                });
+
+                // Update total ratings count
+                club.totalRatings = (club.totalRatings || Math.floor(club.members * 0.6)) + 1;
+
+                // Recalculate average rating
+                const totalScore = club.reviews.reduce((sum, review) => sum + review.rating, 0);
+                club.rating = totalScore / club.reviews.length;
+
+                alert('Thank you for your review! Your feedback has been submitted successfully.');
+                
+                // Clear the form
+                document.getElementById('reviewerName').value = '';
+                document.getElementById('reviewerYear').value = '';
+                document.getElementById('reviewComment').value = '';
+                selectedRating = 0;
+                document.querySelectorAll('.star-rating').forEach(star => star.classList.remove('selected'));
+
+                // Refresh the modal with updated reviews
+                showClubDetails(club);
+                
+                // Re-display clubs to show updated rating
+                displayClubs(currentDomain, currentSubdomain);
+            }
+        }
+    </script>
+</body>
+</html>
