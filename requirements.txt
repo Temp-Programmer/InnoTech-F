@@ -4,8 +4,9 @@ mysql-connector-python==8.1.0
 python-dotenv==1.0.0
 gunicorn==21.2.0
 itsdangerous
-Jinja2==
-click==
+Jinja2
+click
 Flask-Session
 redis
+
 
