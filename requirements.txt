@@ -3,8 +3,9 @@ werkzeug==3.1.2
 mysql-connector-python==8.1.0
 python-dotenv==1.0.0
 gunicorn==21.2.0
-itsdangerous==2.1.2
-Jinja2==3.1.4
-click==8.1.7
-Flask-Session==0.5.0
-redis==5.3.0
+itsdangerous
+Jinja2==
+click==
+Flask-Session
+redis
+
